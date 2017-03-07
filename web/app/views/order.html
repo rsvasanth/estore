@@ -1,0 +1,78 @@
+<header-bar></header-bar>
+<title>Order</title>
+<style>
+    .your_review {
+        min-height: 60px;
+    }
+</style>
+<div class=heading-banner style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important">
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class="text-center  k-padding">
+                    <div class=page-banner-title>
+                        <h2>Order</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li><i class="fa fa-angle-right"></i>Order</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="order-area k-padding">
+    <div class=container>
+        <div class=row ng-if="order.orders.length==0">
+            <div class="alert alert-info"><strong>No order found</strong></div>
+        </div>
+        <div class=row ng-repeat="oder in order.orders">
+            <div class="col-md-12 col-sm-12 col-xs-12 res-margin">
+                <p class=text-right>{{oder.created_at | date:'MMM d, y @ h:mma'}}
+                    <h4 class=order-history-title>Order #{{oder._id}}</h4>
+                    <div class="table-responsive table-wrap">
+                        <table class=full>
+                            <thead>
+                                <tr>
+                                    <th>Product
+                                        <th>SKU
+                                            <th>Price
+                                                <th>Status
+                                                    <th class=text-right>Quantity
+                                                        <th class=text-right>Total
+                                                            <th>
+                                                                <tbody>
+                                                                    <tr ng-repeat="prod in oder.products" style="border:1px solid #ddd">
+                                                                        <td><a href=#/product/{{prod.id._id}}>{{prod.id.title}}<span>{{prod.variant}}</span></a>
+                                                                            <td class=text-center>{{prod.id.sku}}
+                                                                                <td class=text-center>{{prod.id.pricing.after_discount}}
+                                                                                    <td class=text-center>{{prod.tracking.status}}
+                                                                                        <td class=text-center>{{prod.quantity}}
+                                                                                            <td class=text-right>${{prod.id.pricing.after_discount * prod.quantity}}
+                                                                                                <td class="text-center submit-text">
+                                                                                                    <a href=#/track-product/{{prod.id._id}}/{{oder._id}}>
+                                                                                                        <button class=kp-button>Track Item</button>
+                                                                                                    </a>
+                                                                                                    <a href=#/return-product/{{prod.id._id}}/{{oder._id}}>
+                                                                                                        <button class=kp-button>Return Item</button>
+                                                                                                    </a>
+                                                                                                    <a href=#/review-product/{{prod.id._id}}/{{oder._id}}>
+                                                                                                        <button class="kp-button your_review">Write a product review</button>
+                                                                                                    </a>
+                                                                                                    <tfoot>
+                                                                                                        <tr>
+                                                                                                            <td colspan=4>Subtotal
+                                                                                                                <td class=text-right colspan=3>${{oder.total_price}}
+                                                                                                                    <tr>
+                                                                                                                        <td colspan=4>Shipping (Standard Shipping)
+                                                                                                                            <td class=text-right colspan=3>${{oder.total_shipping}}
+                                                                                                                                <tr>
+                                                                                                                                    <td colspan=4><strong>Total</strong>
+                                                                                                                                        <td class=text-right colspan=3><strong>${{oder.total_price + oder.total_shipping}}</strong></table>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

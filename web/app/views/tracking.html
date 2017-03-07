@@ -1,0 +1,103 @@
+<header-bar></header-bar>
+<title>Tracking</title>
+<div class=heading-banner ng-repeat="pro in ReturnC.product" style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important" >
+    <div class=container ng-repeat="prd in pro.product">
+        <div class=row>
+            <div class=col-lg-12>
+                <div class="text-center  k-padding">
+                    <div class=page-banner-title>
+                        <h2>TRACK</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                        <li><i class="fa fa-angle-right"></i><a href="#/order">Order</a>
+                            <li><i class="fa fa-angle-right"></i>{{prd.title}}</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shop-details-area k-padding" ng-repeat="pro in ReturnC.product">
+    <div class=container ng-repeat="prd in pro.product">
+        <div class=row>
+            <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12" style=padding:0>
+                <div class=track_heading>
+                    <h2>Track Package</h2></div>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12 tracking_outer">
+                <div class=tracking_description>
+                    <div class="col-sm-12 col-xs-12 col-lg-2 col-md-2">
+                        <div class=trackingimage_view><img alt=item class=img-responsive data-ng-repeat="img in prd.images |  limitTo:1" ng-src="{{img.url}}" width=120px></div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 col-lg-8 col-md-8">
+                        <div class=tracking_history>
+                            <p class="text-center lead">
+                                <h3>{{prd.title}}</h3>{{prd.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=container ng-repeat="pro in ReturnC.product">
+    <div class="row bs-wizard" ng-repeat="prd in pro.product" style=border-bottom:0>
+        <div class="bs-wizard-step col-xs-3 complete">
+            <div class="text-center bs-wizard-stepnum">Ordered</div>
+            <div class=progress>
+                <div class=progress-bar></div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info">{{pro.created_at | date:'mediumDate'}}</div>
+        </div>
+        <div class="bs-wizard-step col-xs-3 complete" ng-if="pro.products.tracking.status=='Pickup Scheduled' || pro.products.tracking.status=='Delivered' || pro.products.tracking.status=='Shipped' ">
+            <div class="text-center bs-wizard-stepnum">Reviewed</div>
+            <div class=progress>
+                <div class=progress-bar></div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info"></div>
+        </div>
+        <div class="bs-wizard-step col-xs-3 disabled" ng-if="pro.products.tracking.status!='Pickup Scheduled' || pro.products.tracking.status!='Shipped' || pro.products.tracking.status!='Delivered'">
+            <div class="text-center bs-wizard-stepnum">Reviewed</div>
+            <div class=progress>
+                <div class=progress-bar> </div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info"></div>
+        </div>
+        <div class="bs-wizard-step col-xs-3 complete" ng-if="pro.products.tracking.status=='Shipped' || pro.products.tracking.status=='Delivered'">
+            <div class="text-center bs-wizard-stepnum">Shipped</div>
+            <div class=progress>
+                <div class=progress-bar></div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info"></div>
+        </div>
+         <div class="bs-wizard-step col-xs-3 disabled" ng-if="pro.products.tracking.status!='Shipped' || pro.products.tracking.status!='Delivered'">
+            <div class="text-center bs-wizard-stepnum">Shipped</div>
+            <div class=progress>
+                <div class=progress-bar></div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info"></div>
+        </div>
+        <div class="bs-wizard-step col-xs-3 complete" ng-if="pro.products.tracking.status=='Delivered'">
+            <div class="text-center bs-wizard-stepnum">Delivered</div>
+            <div class=progress>
+                <div class=progress-bar></div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info"><address>{{pro.shipping.address}} ,{{pro.shipping.city}} ,{{pro.shipping.state}}</address></div>
+        </div>
+		<div class="bs-wizard-step col-xs-3 disabled" ng-if="pro.products.tracking.status!='Delivered'">
+            <div class="text-center bs-wizard-stepnum">Delivered</div>
+            <div class=progress>
+                <div class=progress-bar></div>
+            </div>
+            <a href="" class=bs-wizard-dot></a>
+            <div class="text-center bs-wizard-info"><address>{{pro.shipping.address}} ,{{pro.shipping.city}} ,{{pro.shipping.state}}</address></div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

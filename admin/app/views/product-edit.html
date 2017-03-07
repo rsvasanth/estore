@@ -1,0 +1,95 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{ProdEdit.title}}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box-header -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ProdEdit.title}}</h3>
+            </div>
+            <notification-bar alert-data="ProdEdit.notify"></notification-bar>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" ng-submit="ProdEdit.saveProduct()" name="myForm">
+              <div class="box-body">
+                <form-input label="Product Name" required name="name" model="ProdEdit.product.title"></form-input>
+                <form-input label="Product SKU" required name="sku" model="ProdEdit.product.sku"></form-input>
+                <text-area label="Product Description" model="ProdEdit.product.description"></text-area>
+                <div class="form-group">
+                  <label>Category</label>
+                  <select class="form-control" ng-change="ProdEdit.categoryChanged()" ng-model="ProdEdit.product.category">
+                    <option value="{{option._id}}" ng-repeat="option in ProdEdit.categories"> {{option.name}}</option>
+                  </select>
+                </div>
+                <category-select label="Sub Category" model="ProdEdit.product.subcategory" options="ProdEdit.subcategories">
+                </category-select>
+                <form-input label="Product Quantity" model="ProdEdit.product.quantity"></form-input>
+                <form-input label="Product Price" model="ProdEdit.product.pricing.original"></form-input>
+                <form-input label="Product After Discount" model="ProdEdit.product.pricing.after_discount"></form-input>
+                <form-input label="Product Service Tax" model="ProdEdit.product.pricing.service_tax"></form-input>
+                <form-input label="Product Commission" model="ProdEdit.product.pricing.commission"></form-input>
+
+
+                <h4>Variants <span class="pull-right">
+                  <button class="btn btn-default" type="button" ng-click="ProdEdit.addVariants()">Add Variants</button>
+                </span></h4>
+                <div class="col-md-12" ng-repeat="variant in ProdEdit.product.variants">
+                  <div class="col-md-6">
+                    <form-input label="Product variant Name" model="variant.name"></form-input>
+                  </div>
+                  <div class="col-md-4">
+                    <form-input label="Product variant Qty" model="variant.quantity"></form-input>
+                  </div>
+                  <div class="col-md-2" style="padding: 24px;">
+                    <a class="btn btn-danger" href="javascript:void(0)" ng-click="ProdEdit.removeVariants($index)">Remove</a>
+                  </div>
+                </div>
+                <h4>Images</h4>
+                <div class="col-md-12">
+                  <div class="col-md-6" ng-repeat="image in ProdEdit.product.images">
+                    <img ng-src="{{image.url}}" height="250" width="250" style="padding: 10px;" />
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default" ng-click="ProdEdit.init()">Reset</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box-body -->
+
+
+        </div>
+
+        <!-- /.content -->
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+  </div>
+</div>
+<!-- ./wrapper -->

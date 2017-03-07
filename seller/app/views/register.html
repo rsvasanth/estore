@@ -1,0 +1,344 @@
+
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="plugins/intlTelInput.css">
+<div class="header">
+  <style>
+    .login_link
+    {
+      margin-bottom: 8px !important;
+    }
+    .email_confirmation
+    {
+      margin-bottom: 0px;
+      margin-top: 3px;
+      color: #72afd2;
+    }
+    ody {
+  margin: 0;
+  background: #000;
+}
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    /*z-index: -100;*/
+    transform: translateX(-50%) translateY(-50%);
+ background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+.stopfade {
+   opacity: .5;
+}
+
+#polina {
+  font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+  font-weight:100;
+  background: rgba(0,0,0,0.3);
+  color: white;
+  padding: 2rem;
+  width: 33%;
+  margin:2rem;
+  float: right;
+  font-size: 1.2rem;
+}
+h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-top: 0;
+  letter-spacing: .3rem;
+}
+#polina button {
+  display: block;
+  width: 80%;
+  padding: .4rem;
+  border: none;
+  margin: 1rem auto;
+  font-size: 1.3rem;
+  background: rgba(255,255,255,0.23);
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .3s background;
+}
+#polina button:hover {
+   background: rgba(0,0,0,0.5);
+}
+
+a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  background:rgba(0,0,0,0.5);
+  padding: .5rem;
+  transition: .6s background;
+}
+a:hover{
+  background:rgba(0,0,0,0.9);
+}
+/*@media screen and (max-width: 500px) {
+  div{width:70%;}
+}*/
+@media screen and (max-device-width: 800px) {
+  html { background: url(images/main.png) #000 no-repeat center center fixed; }
+  /*#bgvid { display: none; }*/
+}
+.header{
+  border:none !important;
+}
+.text-content
+{
+    max-width: 429px;
+    margin:220px auto;
+}
+@media(max-width:800px)
+{
+  .text-content
+  {
+    margin:20px auto;
+  }
+}
+.hor
+{
+  border-width:2px;
+  max-width:150px;
+  border-color:#fff;
+  margin-top:0px;
+}
+.form-horizontal
+{
+  max-width: 540px;
+  margin: 20px auto;
+   padding:30px 10px;
+   background:rgba(0,0,0,0.3);
+}
+.selling
+{
+  margin-bottom: 0px;
+}
+.lead
+{
+  max-width: 340px;
+    margin: 0px auto;
+    text-align: center;
+}
+.start_selling
+{
+  text-transform: uppercase;
+    border: 0;
+    border-radius: 3px;
+
+    font-weight: 500;
+    text-align: center;
+    padding-right: 47px;
+    padding-left: 47px;
+    height: 46px;
+    background-color: #72afd2 !important;
+    border-color: #72afd2 !important;
+    letter-spacing: 1px;
+}
+.g-recaptcha
+{
+  max-width: 250px !important;
+  margin: 0px auto !important;
+}
+@media(max-width:500px)
+{
+  .g-recaptcha
+  {
+    margin: 1px 19px !important;
+  }
+}
+@media(max-width:500px)
+{
+  .agree
+  {
+    max-width:300px;
+    margin:10px auto;
+  }
+}
+@media (max-width: 320px)
+{
+  .g-recaptcha {
+    margin: 0px 0px !important;
+    max-width: 200px !important;
+  }
+}
+@media(max-width: 320px)
+{
+  .rc-anchor-normal {
+
+    max-width: 270px !important;
+    margin-left: 12px !important;
+  }
+}
+
+  </style>
+  <video poster="images/main.png" id="bgvid" playsinline autoplay muted>
+    <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+  <source src="plugins/main.mp4" type="video/mp4">
+
+
+  </video>
+  <!-- <div class="navbar navbar-default" role="navigation">
+
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="javascript:void(0)">Seller Dashboard</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+        <ul class="nav navbar-nav">
+        </ul>
+      </div>
+
+  </div> -->
+</div>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="text-content">
+            <h2 class="selling"> Selling Online Was Never So Easy. </h2><br/>
+              <hr class="hor">
+             <p class="lead">  Just fill in the required details below to get started :)</p>
+
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+              <form class="form-horizontal" ng-submit="submit()" role="form" ng-controller="RegisterCtrl" style="  ">
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-4 control-label"> Your Shop Name</label>
+                  <div class="col-sm-6">
+                    <input  required maxlength="30" minlength="3"  class="form-control"  ng-model="name" id="inputName3" placeholder="Your Shop Name">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+                  <div class="col-sm-6">
+                    <input type="email" required class="form-control" id="inputEmail3" ng-model="email" placeholder="Email">
+                    <p class="email_confirmation"> Please provide valid email for confirmation</p>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
+                  <div class="col-sm-6">
+                    <input type="password" id="password" required maxlength="30" minlength="6" class="form-control" ng-model="password" id="inputPassword3" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Confirm Password</label>
+                  <div class="col-sm-6">
+                    <input type="password" id="confirm_password" required maxlength="30" minlength="6" class="form-control" ng-model="confirn_password" id="inputPassword3" placeholder="Confirm Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Phone</label>
+                  <div class="col-sm-6">
+                    <input type="number" min="1"  required class="form-control" ng-model="phone" id="inputPassword3" placeholder="Phone">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Your Current Address</label>
+                  <div class="col-sm-6">
+                    <textarea row="2" required class="form-control" ng-model="address" id="inputPassword3" placeholder="Address"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">City</label>
+                  <div class="col-sm-6">
+                    <input required class="form-control" ng-model="city" id="inputPassword3" placeholder="City">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">State</label>
+                  <div class="col-sm-6">
+                    <input required class="form-control" ng-model="state" id="inputPassword3" placeholder="State">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Country</label>
+                  <div class="col-sm-6">
+                    <input required class="form-control" ng-model="country" id="inputPassword3" placeholder="Country">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Pincode</label>
+                  <div class="col-sm-6">
+                    <input required maxlength="10" minlength="4" class="form-control" ng-model="pincode" id="inputPassword3" placeholder="Pincode">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Copy of a Govt. issued ID</label>
+                  <div class="col-sm-6">
+                      <input type = "file" required class="form-control" file-model = "govt_issue_card" accept="image/*"/>
+                    <!-- <input required class="form-control" ng-model="govt_issue_card" id="inputPassword3" placeholder="Govt Issue Card"> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Your Business Registration ID</label>
+                  <div class="col-sm-6">
+                    <input required maxlength="30" minlength="3" class="form-control" ng-model="business_registration" id="inputPassword3" placeholder="Your Business Registration ID">
+                  </div>
+                </div>
+              <!-- <div class="g-recaptcha" data-sitekey="6Ldt9SgTAAAAAJ0tlPQ6R-Yp8YopOOKX1heyu8js"></div> -->
+              <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="6LdsBwcUAAAAADfng4zorGEnQxRN5oUjbaIKLcpA"></div>
+                <span class="help-block" style="display: none;">Please check that you are not a robot.</span>
+              </div>
+              <span class="help-block" style="display: none;">Please enter a the security code.</span>
+
+                <div class="form-group">
+                  <div class="submit-btn" style="text-align:center;">
+                    <p class="agree">By signing up, you agree to our <a target="_blank" href="#/content/57ceaa9b3ba5be6e5b16ba15">T&C</a> and <a target="_blank" href="#/content/57ceaaca3ba5be6e5b16ba18">Privacy Policy</a><br/></p>
+                    <button type="submit" class="btn btn-success login_link start_selling btn-lg">Start Selling</button><br/>
+                      <a  href="#/">Already Registered? Login here</a>
+                  </div>
+
+                </div>
+              </form>
+        </div>
+    </div><!--row-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="plugins/fastclick/intlTelInput.min.js"></script>
+    <script src="assets/js/contact-form.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.min.js"></script>
+
+  </div>
+  <script>
+  var password = document.getElementById("password")
+, confirm_password = document.getElementById("confirm_password");
+
+  function validatePassword(){
+    if(password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+      confirm_password.setCustomValidity('');
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword;
+  </script>

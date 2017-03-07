@@ -1,0 +1,73 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{PagesCtrl.current_view}}
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{{PagesCtrl.current_view}}</h3>
+            </div>
+            <notification-bar alert-data="PagesCtrl.notify"></notification-bar>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table data-table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Page Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="page in PagesCtrl.pages">
+                    <td>{{$index+1}}</td>
+                    <td>{{page.name}}</td>
+                    <td>{{page.description}}</td>
+                    <td>
+                      <edit-button href="#/pages/{{page._id}}" title="Edit Page"></edit-button>
+                      <delete-button ng-click="PagesCtrl.remove(page._id, $index)" title="Delete Page"></delete-button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Page Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- /.content -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+    <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->

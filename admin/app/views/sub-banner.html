@@ -1,0 +1,122 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+	<style>
+		.upload_img
+		{
+			margin-top:10px;
+		}
+	</style>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{Ctrl.title}}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box-header -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Home Page Settings</h3>
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+
+            <notification-bar alert-data="Ctrl.notify"></notification-bar>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" name="myForm">
+              <div class="box-body">
+                <h3> Sub Banner </h3>
+                <form-input label="Set a Title for your Sub Banner" required name="title" model="Ctrl._t_s_banner.title"></form-input>
+                <form-input label="Enter the Text which should be displayed over the Sub Banner" required name="text" model="Ctrl._t_s_banner.text"></form-input>
+                <form-input label="Enter the Url which the user should be redirected by clicking on the Sub Banner" required name="url" model="Ctrl._t_s_banner.url"></form-input>
+                <div class="form-group">
+                  <div class="form-group">
+                    <b>Click on the Select Image to Upload the Image</b>
+                    <br/>
+                    <div class="btn btn-primary" ng-model="file" ngf-select="Ctrl.imageUpload($file, '_t_s_banner')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'">Select Image</div>
+                    <img ng-src="{{Ctrl._t_s_banner.image.url}}" height="100" width="100" class="upload_img"/>
+                    <p>&nbsp;</p>
+                    <div class="progress progress-sm active">
+                      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl._t_s_bannerProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl._t_s_bannerProgressPercentage}}%">
+                        <span class="sr-only"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <b>Click on Add Sub Banner to Confirm And Upload</b>
+                <div class="form-group">
+                  <button type="button" ng-disabled="
+                  !Ctrl._t_s_banner.title ||
+                  !Ctrl._t_s_banner.text  ||
+                  !Ctrl._t_s_banner.url  ||
+                  !Ctrl._t_s_banner.image
+                  " class="btn btn-primary upload_img" ng-click="Ctrl.pushTempToSource(Ctrl._t_s_banner, 'sub_banner'); Ctrl._t_s_banner={};">
+                    Add Sub Banner
+                  </button>
+                </div>
+                <hr/>
+                <div class="form-group">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td>Title</td>
+                        <td>Text</td>
+                        <td>Url</td>
+                        <td>Image</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="s_banner in Ctrl.configuration.sub_banner">
+                        <td>{{s_banner.title}}</td>
+                        <td>{{s_banner.text}}</td>
+                        <td>{{s_banner.url}}</td>
+                        <td><img src="{{s_banner.image.url}}" height="100" width="100" /></td>
+                        <td>
+                          <a href="javascript:void(0)" ng-click="Ctrl.editBanner($index, 'sub_banner')"><i class="fa fa-pencil"></i></a>
+                          <a href="javascript:void(0)" ng-click="Ctrl.deleteBanner($index, 'sub_banner')"><i class="fa fa-trash"></i></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                  Click on Submit To save changes<br/>
+                <button type="button" ng-click="Ctrl.saveConfiguration()" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default" ng-click="Ctrl.init()">Reset</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box-body -->
+
+
+        </div>
+
+        <!-- /.content -->
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+  </div>
+</div>
+<!-- ./wrapper -->

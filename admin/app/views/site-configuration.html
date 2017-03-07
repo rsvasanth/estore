@@ -1,0 +1,180 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{Ctrl.title}}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box-header -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{Ctrl.title}}</h3>
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+            <notification-bar alert-data="Ctrl.notify"></notification-bar>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" ng-submit="Ctrl.saveConfiguration()" name="myForm">
+              <div class="box-body">
+                <form-input label="Site Title" required name="title" model="Ctrl.configuration.title"></form-input>
+                <form-input label="Pricing Unit" required name="pricing_unit" model="Ctrl.configuration.pricing_unit"></form-input>
+                <form-input label="Seller Commission" required name="commission" model="Ctrl.configuration.commission"></form-input>
+                <form-input label="Serivice Tax" required name="service_tax" model="Ctrl.configuration.service_tax"></form-input>
+                <form-input label="Email" required name="email" model="Ctrl.configuration.contact.email"></form-input>
+                <form-input label="Phone" required name="phone" model="Ctrl.configuration.contact.phone"></form-input>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <textarea class="form-control" placeholder="Address" ng-model="Ctrl.configuration.contact.address"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="ships_in">Ships In</label>
+                  <div class="col-md-12">
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" ng-model="Ctrl.ships_in" placeholder="Ships In Days" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="ships_in">&nbsp;</label>
+                      <button type="button" class="btn btn-primary" ng-click="Ctrl.addShipsIn()" ng-disabled="!Ctrl.ships_in">+</button>
+                    </div>
+                  </div>
+                  <div class="col-md-12 padded" ng-repeat="val in Ctrl.configuration.ships_in | unique">
+                    <div class="col-md-8">
+                      <input type="text" readonly="" class="form-control" min="1" ng-model="val" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="ships_in">&nbsp;</label>
+                      <button type="button" class="btn btn-danger" ng-click="Ctrl.removeShipsIn($index)">X</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="ships_in">Social Links</label>
+                  <!-- <div class="col-md-12">
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="Ctrl.social_links.name" placeholder="Name" />
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="Ctrl.social_links.url" placeholder="Url" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="ships_in">&nbsp;</label>
+                      <button type="button" class="btn btn-primary" ng-click="Ctrl.addSocialLinks()" ng-disabled="!Ctrl.social_links.name || !Ctrl.social_links.url">+</button>
+                    </div>
+                  </div> -->
+                  <div class="col-md-12 padded" ng-repeat="val in Ctrl.configuration.social_links | unique">
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="val.name" placeholder="Name" readonly=""/>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="val.url" placeholder="Url" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="ships_in">&nbsp;</label>
+                      <!-- <button type="button" class="btn btn-danger" ng-click="Ctrl.removeSocialLinks($index)">X</button> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="ships_in">Payment Gateway</label>
+                  <div class="col-md-12">
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" ng-model="Ctrl.configuration.payment_gateway[0].name" placeholder="Name" />
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" ng-model="Ctrl.configuration.payment_gateway[0].email" placeholder="Email" />
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control" ng-model="Ctrl.configuration.payment_gateway[0].mode">
+                        <option value="sandbox" selected="">Sand Box</option>
+                        <option value="live">Live</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="units">Units</label>
+                  <div class="col-md-12">
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" ng-model="Ctrl.units" placeholder="Units" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="units">&nbsp;</label>
+                      <button type="button" readonly="" class="btn btn-primary" ng-click="Ctrl.addUnits()" ng-disabled="!Ctrl.units">+</button>
+                    </div>
+                  </div>
+                  <div class="col-md-12 padded" ng-repeat="val in Ctrl.configuration.units | unique">
+                    <div class="col-md-8">
+                      <input type="text" readonly="" class="form-control" ng-model="val" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="units">&nbsp;</label>
+                      <button type="button" class="btn btn-danger" ng-click="Ctrl.removeUnits($index)">X</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'fav_icon')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Upload Fav Icon</div>
+                  <img src="{{Ctrl.configuration.fav_icon.url}}" height="100" width="100"/>
+                </div>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.fav_iconProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.fav_iconProgressPercentage}}%">
+                    <span class="sr-only"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'site_logo')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Site Logo</div>
+                  <img src="{{Ctrl.configuration.site_logo.url}}" height="100" width="100"/>
+                </div>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.site_logoProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.site_logoProgressPercentage}}%">
+                    <span class="sr-only"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'overall_banner')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Over All Banner</div>
+                  <img src="{{Ctrl.configuration.overall_banner.url}}" height="100" width="100"/>
+                </div>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.overall_bannerProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.overall_bannerProgressPercentage}}%">
+                    <span class="sr-only"></span>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default" ng-click="Ctrl.init()">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- /.content -->
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+  </div>
+</div>
+<!-- ./wrapper -->

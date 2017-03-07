@@ -1,0 +1,105 @@
+<header-bar></header-bar>
+<style>
+.loadmore {
+    background: #ef6644 none repeat scroll 0 0;
+    border: 1px solid #ef6644;
+    color: #fff;
+    font-weight: bold;
+    height: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 400ms ease-out 0s;
+    width: 169px;
+}
+.nomore{
+background: gray none repeat scroll 0 0;
+    border: medium none gray;
+    border-radius: 16px;
+    margin-left: 30%;
+    width: 444px;
+}
+</style>
+<title>Shop Details</title>
+<div class=new_banner ng-if="!shopC.seller.banner" style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important">
+    <div class=container>
+        <div class=row>
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2">
+                <div class=shop_logo_details><img alt=shop-logo ng-if=shopC.seller.logo src={{shopC.seller.logo.cdn.url}} width=""> <img alt=shop-logo ng-if="!shopC.seller.logo" ng-src="https://kartrocket-res.cloudinary.com/image/fetch/w_169,h_169,c_fit,g_center,r_3,f_auto/https:/nozzle.s3-ap-southeast-1.amazonaws.com/default-shop-logo/{{shopC.seller.name  | limitTo:1}}_7.png" width=""></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 col-md-8">
+                <div class=shop_locationsdetails>
+                    <p class=lead><span><b>{{shopC.seller.name}}</b> |<span class=seller_listing> {{shopC.seller.products.length}} Products</span></span>
+                        <br><span class=shop_map><i class="fa fa-map-marker"><span class=shop_map_inner>{{shopC.seller.address[0].address}}</span></i> <i class="fa fa-calendar"><span class=shop_map_inner>Joined {{shopC.seller.created_at | date:'mediumDate'}}</span></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=new_banner ng-if="shopC.seller.banner" style="background:rgba(0,0,0,0) url({{shopC.seller.banner.cdn.url}}) repeat scroll 0 0!important">
+    <div class=container>
+        <div class=row>
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2">
+                <div class=shop_logo_details><img alt=shop-logo ng-if="shopC.seller.logo" src={{shopC.seller.logo.cdn.url}} width=""> <img alt=shop-logo ng-if="!shopC.seller.logo" ng-src="https://kartrocket-res.cloudinary.com/image/fetch/w_169,h_169,c_fit,g_center,r_3,f_auto/https:/nozzle.s3-ap-southeast-1.amazonaws.com/default-shop-logo/{{shopC.seller.name | limitTo:1}}_7.png" width=""></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 col-md-8">
+                <div class=shop_locationsdetails>
+                    <p class=lead><span><b>{{shopC.seller.name}}</b> |<span class=seller_listing> {{shopC.seller.products.length}} Products</span></span>
+                        <br><span class=shop_map><i class="fa fa-map-marker">&nbsp; <span class=shop_map_inner>{{shopC.seller.address[0].address}}</span></i> <i class="fa fa-calendar">&nbsp; <span class=shop_map_inner>Joined {{shopC.seller.created_at | date:'mediumDate'}}</span></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding shop-page-area">
+    <div class=container>
+        <div class=row>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class=shop-content>
+                    <div class=shorting-form>
+                        <form action=#>
+                            <div class=shorting-select>
+                                <select id=sort ng-model=sortBy>
+                                    <option value="">--sort--
+                                        <option value=created_at>Sort by newness
+                                            <option value=pricing.after_discount>Sort by price: low to high
+                                                <option value=-pricing.after_discount>Sort by price: high to low</select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="alert alert-success" ng-show=header.success>
+                        <button class=close data-ng-click=header.close(this) type=button>x</button><strong>Success!</strong>{{header.success.statusMessage}}</div>
+                    <div class="alert alert-danger" ng-show=header.error>
+                        <button class=close data-ng-click=header.close(this) type=button>x</button><strong>Oops!</strong>{{header.error.statusMessage}}</div>
+                    <div class=tab-content>
+                        <div class="active tab-pane tab-panes" id=home role=tabpanel>
+                            <div class=row>
+                                <br>
+                                <br>
+                                <div class="alert alert-info" ng-if="shopC.seller.products.length==0"><strong>Oops!</strong>No product found</div>
+                                <div class="col-xs-12 col-md-3 col-sm-3" data-ng-repeat="prod in shopC.seller.products | orderBy:sortBy | limitTo : shopC.limit">
+                                    <div class=single-product>
+                                        <div class=product-img>
+                                            <div class=product-img-2>
+                                                <a ng-href=#/product/{{prod._id}}>
+												<img alt="" ng-if=$first class=primary-img ng-src="{{img.cdn.url}}" ng-repeat-start="img in prod.images | limitTo:2"> 
+												<img alt="" ng-if=!$first class=secondary-img ng-src="{{img.cdn.url}}"   ng-repeat-end></a>
+                                            </div>
+                                        </div>
+                                        <div class=product-info>
+                                            <h2><a title="{{prod.title}}" ng-href=#/product/{{prod._id}}>{{prod.title | cut:true:15:' ...'}}</a></h2>
+                                            <div class=price><span class=new-price><span>${{prod.pricing.after_discount}}</span></span><span class=old-price><span>${{prod.pricing.original}}</span></span><span class=offer>{{((prod.pricing.original - prod.pricing.after_discount)/prod.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							<button style="margin-left:40%;" ng-if="shopC.seller.products.length > shopC.limit" ng-click="shopC.expand(9)" class="loadmore" type="button">Load More</button>
+  <button  ng-if="shopC.seller.products.length && shopC.seller.products.length <= shopC.limit" class="loadmore nomore" type="button">No more product found</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer-bar></footer-bar>

@@ -1,0 +1,285 @@
+<header-bar></header-bar>
+<style>
+	.product-info a{
+		line-height:24px !important;
+	}
+	@media only screen (min-width:480px) and (max-width:991px)
+	{
+		. user_pane_activity
+		{
+			padding: 95px 20px;
+		}
+	}
+	@media only screen (min-width:320px) and (max-width:479px)
+	{
+		. user_pane_activity
+		{
+			padding-top: 232px;
+		}
+	}
+
+</style>
+<title>{{ProdC.product.name}}</title>
+<meta name="keywords" content="{{ProdC.product.meta.keyword}}" />
+<meta name="description" content="{{ProdC.product.meta.description}}" />
+<div class=heading-banner ng-repeat="cat in ProdC.product.categories | orderBy: 'created_at' | limitTo:1" style="background:rgba(0,0,0,0) url({{cat.image.url}}) repeat scroll 0 0!important">
+    <div class=container>
+
+        <div class=row>
+            <div class=col-lg-12>
+                <div class="text-center k-padding PaDDnew">
+                    <div class=page-banner-title>
+                        <h2>{{ProdC.product.title}}</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li ng-repeat="cat in ProdC.product.categories | orderBy: 'created_at'"><i class="fa fa-angle-right"></i><a href=#/search/category/{{cat._id}}>{{cat.name}}</a></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding paDD-product-area">
+    <div class=container>
+        <div class=row>
+            <div class="col-xs-12 col-sm-12 col-md-4 res-margin">
+                <div class=product-zoom>
+                    <div class=tab-content>
+                        <div class="tab-pane tab-paneimg active" ng-if=$first id={{img._id}} role=tabpanel ng-repeat-start="img in ProdC.product.images | limitTo:4"><img alt="" ng-src={{img.cdn.url}}></div>
+                        <div class="tab-pane tab-paneimg" ng-if=!$first id={{img._id}} role=tabpanel ng-repeat-end><img alt="" ng-src={{img.cdn.url}}></div>
+                    </div>
+                    <ul class=zoom-tab role=tablist>
+                        <li role=presentation class=active ng-if=$first ng-repeat-start="img in ProdC.product.images | limitTo:4">
+                            <a href=javascript:void(0); aria-controls=img._id data-toggle=tab onclick='openCitys(event,"")' role=tab class=tablinkimg title={{img._id}}><img alt="" ng-src={{img.cdn.url}}></a>
+                            <li role=presentation class=tablinkimg class=active ng-if=!$first ng-repeat-end>
+                                <a href=javascript:void(0); aria-controls=img._id data-toggle=tab onclick='openCitys(event,"")' role=tab title={{img._id}}><img alt="" ng-src={{img.cdn.url}}></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="res-margin single-product-details clearfix">
+                    <h2>{{ProdC.product.name}}</h2>
+										<meta content={{ProdC.product.title}} name=keywords>
+										<meta content=" {{ProdC.product.description}}" name=description>
+                    <small>sold by <a ng-href=#/shop/{{ProdC.product.seller_id}}>{{ProdC.product.seller_name}}</a></small>
+										<a class="btn btn-primary pull-right" href="javascript:void(0);"
+socialshare
+socialshare-provider="facebook"
+socialshare-text="Product Share"
+socialshare-hashtags="angularjs, angular-socialshare"
+socialshare-url="http://the-symbol.net/#/product/{{ProdC.product._id}}">
+Share
+
+</a>
+                    <p>Product added on {{ProdC.product.created_at | date:'mediumDate'}}</p><span class="badge rating_success" ng-if="ProdC.product.total_star!=0">{{ProdC.product.total_star / ProdC.product.total_ratings | number:1}} ★</span> <span class=user_count ng-if="ProdC.product.total_star!=0">{{ProdC.product.total_ratings}} Ratings | {{ProdC.product.total_reviews}} Reviews</span>
+                    <div class=price><span class=new-price><span>${{ProdC.product.pricing.after_discount}}</span></span><span class=old-price><span>${{ProdC.product.pricing.original}}</span></span><span class=offer>{{((ProdC.product.pricing.original - ProdC.product.pricing.after_discount)/ProdC.product.pricing.original) * 100 | number:0}}% OFF</span> <span ng-if="ProdC.product.paid_by_buyer == true" style=color:#3b5998>+ ${{ProdC.product.shipping_details.fee}} Shipping Charges </span><span ng-if="ProdC.product.paid_by_buyer == false" style=color:#3b5998>Free Shipping</span></div>
+                    <div class=product-inner-info><span>Stock: {{ProdC.product.quantity}}</span> <span>Weight: {{ProdC.product.shipping_details.weight}} {{ProdC.product.shipping_details.unit}}</div><div class=product-desc><p>{{ProdC.product.description}}</div><form name=form ng-submit=ProdC.addToCart() role=form><strong ng-if="ProdC.product.quantity!=0" >Select option</strong>
+					<div class="custom-select single-input" ng-if="ProdC.product.variants.length!=0 && ProdC.product.quantity!=0" >
+					<select class=form-control name="variant" required ng-model=ProdC.cart.product_variant><option value="">--select--<option   ng-repeat="vari in ProdC.product.variants"   value={{vari.name}} >{{vari.name}}
+					</select>
+					</div>
+					<div class="custom-select single-input" ng-if="ProdC.product.variants.length==0 && ProdC.product.quantity!=0">
+					<select class=form-control ng-model=ProdC.cart.product_variant><option value="" >No option available
+					</select>
+					</div>
+					<strong ng-repeat="vari in ProdC.product.variants"  ng-if="ProdC.cart.product_variant==vari.name && vari.quantity!=0 && ProdC.product.quantity!=0" >Quantity</strong>
+					<strong ng-hide="ProdC.cart.product_variant" ng-if="$first && ProdC.product.quantity!=0"  ng-repeat="vari in ProdC.product.variants">Quantity</strong>
+					<div class="custom-select single-input"  ng-if="ProdC.product.variants.length!=0 && vari.quantity!=0 && ProdC.cart.product_variant==vari.name && ProdC.product.quantity!=0" ng-repeat="vari in ProdC.product.variants" >
+					
+					<select ng-model=ProdC.cart.quantity ng-required="true"  ng-if="ProdC.cart.product_variant==vari.name"  ng-repeat="vari in ProdC.product.variants" >
+						<option value="">--select--</option>
+						<option  ng-repeat="n in ProdC.range(1,vari.quantity)" value="{{n}}">{{n}}</option>
+					</select>
+					</div>
+					<div class="custom-select single-input" ng-hide="ProdC.cart.product_variant" ng-if="$first"  ng-repeat="vari in ProdC.product.variants" >
+					<select ng-model=ProdC.cart.quantity ng-required="true"   >
+						<option value="">-select--</option>
+						<option  ng-repeat="n in ProdC.range(1,vari.quantity)" value="{{n}}">{{n}}</option>
+					</select>
+					
+					</div>
+					<strong   ng-if="!ProdC.product.variants.length && ProdC.product.quantity!=0">Quantity</strong>
+					<div class="custom-select single-input" ng-if="!ProdC.product.variants.length && ProdC.product.quantity !=0" >
+					
+					<select ng-model=ProdC.cart.quantity  ng-required="true"   >
+						<option value="">-select-</option>
+						<option  ng-repeat="n in ProdC.range(1,ProdC.product.quantity)" value="{{n}}">{{n}}</option>
+					</select>
+					
+					</div>
+					
+                <br>
+                <div class=useraction_button ng-if="ProdC.product.quantity!=0 && ProdC.cart.product_variant==vari.name"  ng-repeat="vari in ProdC.product.variants">
+                    <button class="addto_cart btn btn-warning" ng-show="vari.quantity!=0" ng-hide="vari.quantity==0" type=submit><i class="fa cart fa-shopping-cart"></i>Add to cart</button>
+                    <button class="addto_cart btn btn-warning buynow_cart"  ng-show="vari.quantity!=0" ng-hide="vari.quantity==0"  type=button ng-click=ProdC.buyNow()><i class="fa cart fa-bolt"></i>Buy Now</button>
+                </div>
+                <div class=useraction_button ng-if="ProdC.product.quantity!=0 && $first"  ng-hide="ProdC.cart.product_variant"    ng-repeat="vari in ProdC.product.variants">
+                    <button class="addto_cart btn btn-warning"  type=submit><i class="fa cart fa-shopping-cart"></i>Add to cart</button>
+                    <button class="addto_cart btn btn-warning buynow_cart"  type=button ng-click=ProdC.buyNow()><i class="fa cart fa-bolt"></i>Buy Now</button>
+                </div>
+                 <div class=useraction_button ng-if="ProdC.product.variants.length==0 && ProdC.product.quantity!=0">
+                    <button class="addto_cart btn btn-warning"  type=submit><i class="fa cart fa-shopping-cart"></i>Add to cart</button>
+                    <button class="addto_cart btn btn-warning buynow_cart"  type=button ng-click=ProdC.buyNow()><i class="fa cart fa-bolt"></i>Buy Now</button>
+                </div>
+                </form>
+				<div  ng-repeat="vari in ProdC.product.variants" class="alert alert-danger" ng-if="ProdC.cart.product_variant==vari.name && vari.quantity==0"><strong>Sorry! Out of Stock</strong></div>
+                <div class="alert alert-danger" ng-if="ProdC.product.quantity==0"><strong>Sorry! Out of Stock</strong></div>
+            </div>
+            <div class="alert alert-success" ng-show=ProdC.success>
+                <button class=close type=button data-ng-click=ProdC.close(this)>x</button><strong>Success!</strong> {{ProdC.success.statusMessage}}</div>
+            <div class="alert alert-danger" ng-show=ProdC.error>
+                <button class=close type=button data-ng-click=ProdC.close(this)>x</button><strong>Oops!</strong> {{ProdC.error.statusMessage}}</div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3" ng-if="ProdC.topr.length">
+            <div class=section-heading>
+                <h2><span>Top Rated</span></h2></div>
+            <div class="category-product sin-product-top">
+                <div class=single-product ng-repeat="top in ProdC.topr | limitTo:4 ">
+                    <div class=product-img>
+                        <div class=product-img-2>
+                            <a ng-href=#/product/{{top._id}} target=_self><img alt="" ng-src={{img.cdn.url}} class=primary-img ng-if=$first ng-repeat-start="img in top.images | limitTo:2"> <img alt="" ng-src={{img.cdn.url}} class=secondary-img ng-if=!$first ng-repeat-end></a>
+                        </div>
+                    </div>
+                    <div class=product-info>
+                        <h2><a href=#/product/{{top._id}}>{{top.name | cut:true:30:' ...'}}</a></h2><span class="badge rating_success" ng-if="top.total_star!=0">{{top.total_star / top.total_ratings | number:1}} ★</span> <span class=user_count ng-if="top.total_star!=0">({{top.total_ratings}})</span>
+                        <div class=price><span class=new-price><span>${{top.pricing.after_discount}}</span></span> <span class=old-price><span>${{top.pricing.original}}</span></span><span class=offer>{{((top.pricing.original - top.pricing.after_discount)/top.pricing.original) * 100 | number:0}}% OFF</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=row>
+        <div class=col-md-12>
+            <div class="k-padding-top-4 review-area">
+                <ul class=review-tab role=tablist>
+                    <li role=presentation class={{ProdC.active}}><a href="" aria-controls=home data-toggle=tab onclick='openCity(event,"re-p-1")' role=tab class=tablinks>product Description</a>
+                        <li role=presentation class={{ProdC.review}}><a href="" aria-controls=profile data-toggle=tab onclick='openCity(event,"re-p-2")' role=tab class=tablinks>customer review</a>
+                            <li role=presentation><a href="" aria-controls=profile data-toggle=tab onclick='openCity(event,"re-p-3")' role=tab class=tablinks>Shipping Details</a>
+                                <li role=presentation><a href="" aria-controls=profile data-toggle=tab onclick='openCity(event,"re-p-4")' role=tab class=tablinks>Terms & Conditions</a></ul>
+                <div class="tab-content user_pane_activity">
+                    <div class="tab-pane tab-panes {{ProdC.active}}" id=re-p-1 role=tabpanel>
+
+                        <div class=p-des-re ng-bind-html="ProdC.product.long_description"></div>
+                    </div>
+                    <div class="tab-pane tab-panes {{ProdC.review}}" id=re-p-2 role=tabpanel>
+                        <div class="p-des-re customer-review">
+                            <div class=row>
+                                <div class=review-body ng-if="ProdC.rating.length==0">No reviews found</div>
+                                <div class=review-body ng-if="ProdC.rating.length!=0">
+                                    <div class="col-xs-12 col-md-4 col-sm-6 single-customer-r" data-ng-repeat="rate in ProdC.rating">
+									<div class=c-r-img ng-if=rate.user.logo><img style=width:90px;height:90px alt="" class=imgs ng-src={{rate.user.logo.cdn.url}}></div>
+									<div class=c-r-img ng-if=!rate.user.logo><img style=width:90px;height:90px alt="" class=imgs ng-src=styles/img/male.png ng-if="rate.user.gender=='male'"> <img style=width:80px;height:80px alt="" class=imgs ng-src=styles/img/female.png ng-if="rate.user.gender=='female'"></div>
+
+                                        <div class=c-r-text>
+                                            <h3>{{rate.user.name}}</h3>
+                                            <div class=rating><span class="badge rating_success">{{rate.stars}} ★</span></div>
+                                            <p class=s-r-comment>{{rate.comment}}</p><span class=s-r-d>{{rate.created_at | date:'mediumDate'}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=review-option ng-if="ProdC.reviews == 'active'">
+                                <div class=your-rating>
+                                    <h5>Your rating</h5>
+                                    <div class=rating>
+                                        <angular-star-rating hover=changeOnHover is-readonly=isReadonly max=maxValue value=ratingValue></angular-star-rating>
+                                    </div>
+                                    <div class=custom-input>
+                                        <form name=form ng-submit=ProdC.saveReview() role=form>
+                                            <div ng-if=Prodc.dataLoading style="width:100%;position:absolute;height:100%;background-color:rgba(0,0,0,.39);box-shadow:0 0 36px #000;z-index:80"><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" style=margin-left:50%;margin-top:25%;z-index:80;position:absolute></div>
+                                            <div class=row>
+                                                <div class=col-sm-9>
+                                                    <div class=input-mail>
+                                                        <input value={{ratingValue}} id=stars name=stars type=hidden>
+                                                        <textarea name=comment ng-model=ProdC.re.comment ng-required=true placeholder="Summary of your review..." style=width:605px;height:108px type=text></textarea>
+                                                    </div>
+                                                    <div class=submit-text>
+                                                        <button class=kp-button type=submit>submit review</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane tab-panes" id=re-p-3 role=tabpanel>
+                        <div class=p-des-re>
+                            <p ng-if="ProdC.product.paid_by_buyer == false"><i class="fa fa-circle roundicon_shipdetails"></i> Free Shipping
+                                <p><i class="fa fa-circle roundicon_shipdetails"></i> Will be Dispatched in {{ProdC.product.shipping_details.duration}} days
+                                    <p ng-if="ProdC.product.paid_by_buyer == true"><i class="fa fa-circle roundicon_shipdetails"></i> ${{ProdC.product.shipping_details.fee}} Shipping Charges</div>
+                    </div>
+                    <div class="tab-pane tab-panes" id=re-p-4 role=tabpanel>
+                        <div class=p-des-re>
+                            <p>{{ProdC.product.terms_and_conditions}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="k-padding-b new-product-area" ng-if="ProdC.related.length">
+    <div class=container>
+        <div class=row>
+            <div class=col-md-12>
+                <div class="text-center section-heading-two">
+                    <h2><span>Related Products</span></h2></div>
+            </div>
+        </div>
+        <div class=row>
+            <div class=col-md-12>
+                <div class=row>
+                    <div class=active-items-4>
+                        <div class=col-md-12 ng-repeat="rel in ProdC.related | orderBy:'-created_at'" on-finish-render=ngRepeatFinishedu>
+                            <div class=single-product>
+                                <div class=product-img>
+                                    <div class=product-img-2>
+                                        <a ng-href=#/product/{{rel._id}} target=_self><img alt="" ng-src={{img.cdn.url}} class=primary-img ng-if=$first ng-repeat-start="img in rel.images | limitTo:2"> <img alt="" ng-src={{img.cdn.url}} class=secondary-img ng-if=!$first ng-repeat-end></a>
+                                    </div>
+                                </div>
+                                <div class=product-info>
+                                    <h2><a title="{{rel.name}}" href=#/product/{{rel._id}}>{{rel.name | cut:true:30:' ...'}}</a></h2><span class="badge rating_success" ng-if="rel.total_star!=0">{{rel.total_star / rel.total_ratings | number:1}} ★</span> <span class=user_count ng-if="rel.total_star!=0">({{rel.total_ratings}})</span>
+                                    <div class=price><span class=new-price><span>${{rel.pricing.after_discount}}</span></span> <span class=old-price><span>${{rel.pricing.original}}</span></span><span class=offer>{{((rel.pricing.original - rel.pricing.after_discount)/rel.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding-b new-product-area" ng-if="ProdC.shoprelated.length">
+    <div class=container>
+        <div class=row>
+            <div class=col-md-12>
+                <div class="text-center section-heading-two">
+                    <h2><span>Other latest products in this shop</span></h2></div>
+            </div>
+        </div>
+        <div class=row>
+            <div class=col-md-12>
+                <div class=row>
+                    <div class=active-items-5>
+                        <div class=col-md-12 ng-repeat="shopr in ProdC.shoprelated | limitTo:8 | orderBy:'-created_at'" on-finish-render=ngRepeatFinishedsell>
+                            <div class=single-product>
+                                <div class=product-img>
+                                    <div class=product-img-2>
+                                        <a ng-href=#/product/{{shopr._id}} target=_self><img alt="" ng-src={{img.cdn.url}} class=primary-img ng-if=$first ng-repeat-start="img in shopr.images | limitTo:2"> <img alt="" ng-src={{img.cdn.url}} class=secondary-img ng-if=!$first ng-repeat-end></a>
+                                    </div>
+                                </div>
+                                <div class=product-info>
+                                    <h2><a title="shopr.title}}" href=#/product/{{shopr._id}}>{{shopr.title | cut:true:30:' ...'}}</a></h2><!--<span class="badge rating_success" ng-if="shopr.total_star!=0">{{shopr.total_star / shopr.total_ratings | number:1}} ★</span> <span class=user_count ng-if="shopr.total_star!=0">({{shopr.total_ratings}})</span>-->
+                                    <div class=price><span class=new-price><span>${{shopr.pricing.after_discount}}</span></span> <span class=old-price><span>${{shopr.pricing.original}}</span></span><span class=offer>{{((shopr.pricing.original - shopr.pricing.after_discount)/shopr.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

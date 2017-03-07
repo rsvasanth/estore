@@ -1,0 +1,84 @@
+<header-bar></header-bar>
+<title>Cart</title>
+<div class=heading-banner style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important" >
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class=" k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>Shopping cart</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li><i class="fa fa-angle-right"></i><a href=#>Shopping cart</a></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding cart-area">
+    <div class=container>
+        <div class=row>
+            <div class=col-md-12>
+                <div class=order-detail-content>
+                    <div class=table-responsive>
+                        <div class="alert alert-danger" ng-if="cart.status=='error'">
+                            <button class=close type=button data-ng-click="cart.close('cart')">X</button><strong>Success!</strong><strong>{{cart.statusMessage}}</strong></div>
+                        <table class="cart-deatils table table-bordered text-center">
+                            <div ng-if=cart.dataLoading style="width:100%;position:absolute;height:100%;background-color:rgba(0,0,0,.39);box-shadow:0 0 36px #000;z-index:80"><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" style=margin-left:50%;margin-top:12%;z-index:80;position:absolute></div>
+                            <thead>
+                                <tr>
+                                    <th class=cart-product>Product Image
+                                        <th>Title
+                                            <th>Varients
+                                                <th>Unit price
+                                                    <th>Qty
+                                                        <th>Total
+                                                            <th class=action><i class="fa fa-trash-o"></i>
+							<tbody>
+								<tr ng-if=cart.carts.length ng-repeat="cat in cart.carts">
+									<td class=cart-product>
+										<a ng-href=#/product/{{cat.product_id._id}}><img alt={{cat.product_id.title}} data-ng-repeat="img in cat.product_id.images | limitTo:1" ng-src={{img.url}}></a>
+										<td class=cart-description>
+											<p class=product-name><a ng-href=#/product/{{cat.product_id._id}}>{{cat.product_id.title}}</a>
+												<td ng-if=cat.product_variant>{{cat.product_variant}}
+													<td ng-if=!cat.product_variant>-
+														<td class=price><span>${{cat.product_id.pricing.after_discount}}</span>
+															<td class=qty>
+																<input class="form-control input-sm" id={{cat.product_id._id}} value={{cat.product_quantity}}>
+																<button class=kp-button type=button ng-click=cart.updateCart(cat.product_quantity,cat.product_id.quantity,cat.product_id._id)>update</button>
+																<td class="price price-total"><span>${{cat.product_id.pricing.after_discount * cat.product_quantity}}</span>
+																	<td class=action><a href="" ng-click=cart.removeCart(cat._id)><i class="fa fa-times"></i></a>
+																		<tr ng-if="cart.carts.length==0">
+																			<td colspan=6>Your cart empty</table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row k-padding-top-4" ng-if=cart.carts.length>
+            <div class="col-md-4 col-sm-12">
+                <div class=single-cart-form>
+                    <div class=cart-form-title>
+                        <h4>Payment details</h4></div>
+                    <div class=cart-form-text>
+                        <table>
+                            <tr>
+                                <th>subtotal
+                                    <td>${{cart.totalprice}}
+                                        <tr>
+                                            <th>shipping
+                                                <td>${{cart.shipprice}}
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class=tfoot-padd>grand total
+                                                                <td class=tfoot-padd>${{cart.overprice}}</table>
+                        <div class=cup-submit>
+                           <a ng-href="#/" class="kp-button">back to Shop</a><a ng-href=#/checkout class="kp-button floatright">Checkout</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

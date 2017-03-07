@@ -1,0 +1,252 @@
+<style>
+  @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+  * {
+    font-family: roboto, arial, helvetica;
+  }
+  
+  .small {
+    font-size: 11px;
+  }
+  
+  #csstricks img {
+    height: 90px !important;
+    width: 90px !important;
+  }
+  
+  h4 {
+    font-size: 2em;
+    text-align: center;
+    padding: 10px 0 20px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+  }
+  
+  @media(max-width:500px) {
+    h4 {
+      padding-top: 0px;
+    }
+  }
+  
+  span.badge {
+    margin-bottom: 10px;
+  }
+  
+  li.item {
+    display: table;
+    width: 100%;
+    padding: 8px;
+    background-color: #EFEFEF;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 3px solid #EFEFEF;
+    border-right: 3px solid #EFEFEF;
+  }
+  
+  li.item:hover {
+    border-color: #f89406;
+    background-color: #EEEEEE;
+  }
+  
+  li.item h5,
+  li.item p {
+    padding-top: 0;
+    margin-top: 0;
+  }
+</style>
+
+
+<div class="footer-area k-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-4">
+        <div class="footer-widget">
+          <h3>CONTACT US</h3>
+          <ul class="footer-contact">
+            <li><i class="fa fa-map-marker"></i> Addresss: {{header.admin.contact.address}}
+            </li>
+            <li><i class="fa fa-envelope"></i> Email: {{header.admin.contact.email}}
+            </li>
+            <li><i class="fa fa-phone"></i> Phone: {{header.admin.contact.phone}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-4">
+        <div class="footer-widget">
+          <h3>Pages</h3>
+          <ul class="footer-menu">
+            <li><a href="#/page/{{page._id}}" ng-repeat="page in header.pages">{{page.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 hidden-sm col-xs-12">
+        <div class="footer-widget">
+          <h3>Account</h3>
+          <ul class="footer-menu">
+            <li ng-if="!header.user"><a href="#/register">Register</a></li>
+            <li ng-if="header.user"><a href="#/order">order</a></li>
+            <li><a href="#/shop">shop</a></li>
+            <li ng-if="!header.user"><a href="#/login">Login</a></li>
+            <li ng-if="header.user"><a href="#/account">My Account</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+        <div class="footer-widget">
+          <h3>Recent posts</h3>
+          <ul id="csstricks" class="footer-gallery">
+
+
+          </ul>
+          <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+          <script>
+            setInterval(function() {
+              $('.close').trigger('click');
+            }, 50000);
+          </script>
+          <script type="text/javascript">
+            function parseFeed(url, container) {
+              $.ajax({
+                url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=5&callback=?&q=' + encodeURIComponent(url),
+                dataType: 'json',
+                success: function(data) {
+                  // log object data in console
+                  console.log(data.responseData.feed);
+                  // append feed link and title in container
+                  //  $(container).append('<a href="' + url + '"><span class="iconicstroke-rss-alt"></span></a>');
+                  $(container).append('');
+                  // for each entry... *
+                  $.each(data.responseData.feed.entries, function(key, value) {
+                    // * create new date object and pass in entry date
+                    var date = new Date(value.publishedDate);
+                    // var thumbnail = entry.mediaGroups[0].contents[0].url;
+                    // * create months array
+                    var months = new Array(12);
+                    months[0] = 'January';
+                    months[1] = 'February';
+                    months[2] = 'March';
+                    months[3] = 'April';
+                    months[4] = 'May';
+                    months[5] = 'June';
+                    months[6] = 'July';
+                    months[7] = 'August';
+                    months[8] = 'September';
+                    months[9] = 'October';
+                    months[10] = 'November';
+                    months[11] = 'December';
+                    // * parse month, day and year
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    var year = date.getFullYear();
+
+                    // * assign entry variables
+                    // var title = '<h3 class="title"></h3>';
+                    var time = '<p class="time">' + months[month] + ' ' + day + ', ' + year + '</p>';
+                    var snippet = '<p class="snippet">' + value.contentSnippet + '</p>';
+
+                    var content = document.createElement("content");
+                    content.innerHTML = value.content;
+                    var images = "";
+                    $(content).find('img:first').each(function() {
+                      images += this.outerHTML;
+                    });
+                    if (images != '')
+                      var img = '<li ><a href="' + value.link + '" target="_blank">' + images + '</a></li>';
+                    var entry = img;
+                    // * append entire entry in container
+                    $(container).append(entry);
+                  });
+                },
+                // if there's an error... *
+                error: function(errorThrown) {
+                  // * log error message in console
+                  console.log(errorThrown);
+                  // * show error message
+                  alert('Houston, we have a problem.');
+                }
+              });
+            }
+
+            $(document).ready(function() {
+              $('nav#nav-mobile').meanmenu();
+              parseFeed('http://primefusion.net/blog/feed/', '#csstricks');
+            });
+          </script>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copyright-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="copyright">
+          <p>Copyright &copy; <a href="#/">{{header.admin.title}}</a>. All Rights Reserved</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="copyright"><small style="color:#fff;display:block;text-align:center;">Powered BY <a href="http://the-symbol.net/">Prime Fusion</a></small></div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="payment-img"><img src="styles/img/payment.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="top top-7" id="bottom"><i class="fa fa-chevron-up"></i></p>
+
+
+
+
+
+<script>
+  function openCity(evt, cityName) {
+
+    if (cityName == '')
+      cityName = evt.currentTarget.title;
+
+    var i, tabcontent, tablinks; // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tab-panes");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  function openCitys(evt, cityName) {
+
+    if (cityName == '')
+      cityName = evt.currentTarget.title;
+
+    var i, tabcontent, tablinks; // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tab-paneimg");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinkimg");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>

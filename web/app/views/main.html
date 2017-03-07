@@ -1,0 +1,175 @@
+<header-bar></header-bar>
+<title >Home</title><style>.product-info a{line-height:24px !important;}</style>
+<a href="javascript:void(0);" target="_blank">
+<div class=slider-area>
+    <div class="bend niceties preview-2">
+
+        <div class=slides id=my-nivoslider><img alt="" ng-src={{slider.image.cdn.url}} width=100% height=500px ng-repeat="slider in Main.home.main_banner" title=#{{slider._id}}></div>
+        <div class="nivo-html-caption slider-item" ng-repeat="slider in Main.home.main_banner" on-finish-render=ngRepeatFinishednivo id={{slider._id}}>
+            <a ng-href={{slider.url}} target="_blank">
+            <div class=container>
+                <div class=row>
+                    <div class="col-md-12 text-left">
+                        <div class=slider-content>
+                            <div class=slider-2>
+                                <!--<h5 class=title2>{{slider.title}}</h5>--></div>
+                            <!--<div class=slider-3-2><a ng-href={{slider.url}} class=kp-button>{{slider.text}}</a></div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </a>
+        </div>
+
+    </div>
+</div>
+</a>
+<div class="k-padding-t banner-area-2">
+    <div class=container>
+        <div class=row>
+            <div class="col-md-4 col-lg-4 col-sm-4" ng-repeat="subslider in Main.home.sub_banner | limitTo:3">
+                <a ng-href={{subslider.url}}>
+                    <div class=single-banner><img  style="width:500px !important; height:300px !important;" alt="" ng-src="{{subslider.image.cdn.url}}">
+                        <div class=banner-details>
+                            <h2 class=promo-title><strong>{{subslider.title}}</strong></h2>
+                            <p>{{subslider.text}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center k-padding-t service-area" >
+    <div class=container>
+        <div class=row>
+            <div class="col-md-4 col-sm-6 col-lg-4" ng-repeat="im in Main.home.images | limitTo:3">
+                <div class=single-service>
+                    <div class=service-icon><img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_360,w_188/v{{im.image.cdn.version}}/{{im.image.cdn.public_id}}.jpg width=100px></div>
+                    <div class=service-text>
+                        <h2>{{im.title}}</h2>
+                        <p><span>{{im.text}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+<div class=new-product-area ng-if="Main.top_product.length">
+    <div class=container>
+        <div class=row>
+            <div class=col-md-12>
+                <div class="text-center section-heading-two">
+                    <h2><span>New Products</span></h2></div>
+            </div>
+        </div>
+        <div class=row>
+            <div class=col-md-12>
+                <div class=row>
+                    <div class=active-items-6>
+                        <div class=col-md-12 ng-repeat="top in Main.top_product | limitTo:8 | orderBy:'total_star'" on-finish-render=ngRepeatFinished6>
+                            <div class=single-product>
+                                <div class=product-img>
+                                    <div class=product-img-2>
+                                        <a ng-href=#/product/{{top._id}} target=_self><img alt="" ng-src={{img.cdn.url}} class=primary-img ng-if=$first ng-repeat-start="img in top.images | limitTo:2"> <img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=secondary-img ng-if=!$first ng-repeat-end></a>
+                                    </div>
+                                </div>
+                                <div class=product-info>
+                                    <h2><a ng-href=#/product/{{top._id}} title="{{top.name}}">{{top.name | cut:true:25:' ...'}}</a></h2><span class="badge rating_success" ng-if="top.total_star!=0">{{top.total_star / top.total_ratings | number:1}} ★</span> <span class=user_count ng-if="top.total_star!=0">({{top.total_ratings}})</span>
+                                    <div class=price><span class=new-price><span>${{top.pricing.after_discount}}</span></span> <span class=old-price><span>${{top.pricing.original}}</span></span><span class=offer>{{((top.pricing.original - top.pricing.after_discount)/top.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding-t bs-product-area top_paddg" ng-if="Main.best_offer.length">
+    <div class=container>
+        <div class=row>
+            <div class=col-md-12>
+                <div class="text-center section-heading-two">
+                    <h2><span>Sale</span></h2></div>
+            </div>
+        </div>
+        <div class=row>
+            <div class=active-items-5>
+                <div class=col-md-12 ng-repeat="sale in Main.best_offer | limitTo:8 " on-finish-render=ngRepeatFinished5>
+                    <div class=single-product>
+                        <div class=product-img>
+                            <div class=product-img-2>
+                                <a ng-href=#/product/{{sale._id}} target=_self><img alt="" ng-src={{img.cdn.url}} class=primary-img ng-if=$first ng-repeat-start="img in sale.images | limitTo:2"> <img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=secondary-img ng-if=!$first ng-repeat-end></a>
+                            </div>
+                        </div>
+                        <div class=product-info>
+                            <h2><a ng-href=#/product/{{sale._id}} title="{{sale.name}}">{{sale.name | cut:true:25:' ...'}}</a></h2><span class="badge rating_success" ng-if="sale.total_star!=0">{{sale.total_star / sale.total_ratings | number:1}} ★</span> <span class=user_count ng-if="sale.total_star!=0">({{sale.total_ratings}})</span>
+                            <div class=price><span class=new-price><span>${{sale.pricing.after_discount}}</span></span> <span class=old-price><span>${{sale.pricing.original}}</span></span><span class=offer>{{((sale.pricing.original - sale.pricing.after_discount)/sale.pricing.original) * 100 | number:0}}% OFF</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="category-product-area k-padding top_paddg">
+    <div class=container>
+        <div class=row>
+            <div class="col-md-4 col-sm-6 col-xs-12" ng-if="Main.popular.length">
+                <div class=section-heading>
+                    <h2><span>Popular</span></h2></div>
+                <div class=category-product>
+                    <div class=single-product ng-repeat="top in Main.popular | limitTo:3 ">
+                        <div class=product-img>
+                            <div class=product-img-2>
+                                <a ng-href=#/product/{{top._id}} target=_self><img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=primary-img ng-if=$first ng-repeat-start="img in top.images | limitTo:2"> <img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=secondary-img ng-if=!$first ng-repeat-end></a>
+                            </div>
+                        </div>
+                        <div class=product-info>
+                            <h2><a ng-href=#/product/{{top._id}} title="{{top.name}}">{{top.name | cut:true:25:' ...'}}</a></h2><span class="badge rating_success" ng-if="top.total_star!=0">{{top.total_star / top.total_ratings | number:1}} ★</span> <span class=user_count ng-if="top.total_star!=0">({{top.total_ratings}})</span>
+                            <div class=price><span class=new-price><span>${{top.pricing.after_discount}}</span></span> <span class=old-price><span>${{top.pricing.original}}</span></span><span class=offer>{{((top.pricing.original - top.pricing.after_discount)/top.pricing.original) * 100 | number:0}}% OFF</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12" ng-if="Main.best_seller.length">
+                <div class=section-heading>
+                    <h2><span>Best Seller</span></h2></div>
+                <div class=category-product>
+                    <div class=single-product ng-repeat="best in Main.best_seller | limitTo:3">
+                        <div class=product-img>
+                            <div class=product-img-2>
+                                <a ng-href=#/product/{{best._id}} target=_self><img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=primary-img ng-if=$first ng-repeat-start="img in best.images | limitTo:2"> <img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=secondary-img ng-if=!$first ng-repeat-end></a>
+                            </div>
+                        </div>
+                        <div class=product-info>
+                            <h2><a ng-href=#/product/{{best._id}}  title="{{best.name}}">{{best.name | cut:true:25:' ...'}}</a></h2><span class="badge rating_success" ng-if="best.total_star!=0">{{best.total_star / best.total_ratings | number:1}} ★</span> <span class=user_count ng-if="best.total_star!=0">({{best.total_ratings}})</span>
+                            <div class=price><span class=new-price><span>${{best.pricing.after_discount}}</span></span> <span class=old-price><span>${{best.pricing.original}}</span></span><span class=offer>{{((best.pricing.original - best.pricing.after_discount)/best.pricing.original) * 100 | number:0}}% OFF</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 hidden-sm" ng-if="Main.topr.length">
+                <div class=section-heading>
+                    <h2><span>Top Rated</span></h2></div>
+                <div class=category-product>
+                    <div class=single-product ng-repeat="most in Main.topr | limitTo:3 ">
+                        <div class=product-img>
+                            <div class=product-img-2>
+                                <a ng-href=#/product/{{most._id}} target=_self><img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=primary-img ng-if=$first ng-repeat-start="img in most.images | limitTo:2"> <img alt="" ng-src=http://res.cloudinary.com/primefusion/image/upload/c_fit,h_329,w_263/v{{img.cdn.version}}/{{img.cdn.public_id}}.jpg class=secondary-img ng-if=!$first ng-repeat-end></a>
+                            </div>
+                        </div>
+                        <div class=product-info>
+                            <h2><a ng-href=#/product/{{most._id}}  title="{{most.name}}">{{most.name | cut:true:25:' ...'}}</a></h2><span class="badge rating_success" ng-if="most.total_star!=0">{{most.total_star / most.total_ratings | number:1}} ★</span> <span class=user_count ng-if="most.total_star!=0">({{most.total_ratings}})</span>
+                            <div class=price><span class=new-price><span>${{most.pricing.after_discount}}</span></span> <span class=old-price><span>${{most.pricing.original}}</span></span><span class=offer>{{((most.pricing.original - most.pricing.after_discount)/most.pricing.original) * 100 | number:0}}% OFF</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

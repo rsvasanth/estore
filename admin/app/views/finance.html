@@ -1,0 +1,125 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{Ctrl.title}}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+    <style>
+      .box-body {
+        overflow-x: scroll;
+      }
+    </style>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box-header -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{Ctrl.title}}</h3>
+              <h5>All your transactions,amount you owe to sellers,their commision will be displayed here.</h5>
+              <div class="pull-right box-tools">
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+            <notification-bar alert-data="Ctrl.notify"></notification-bar>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>Seller Name</td>
+                    <td>Seller Email</td>
+
+                    <td>Total Orders</td>
+                    <td>Price</td>
+                    <td>Commission</td>
+                    <td>Paid Out</td>
+                    <td>Refund Amount</td>
+                    <td>Payable</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.seller_name">
+                    </td>
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.seller_email">
+                    </td>
+
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.order_count">
+                    </td>
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.price">
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="transaction in Ctrl.transactions | filter:Ctrl.search">
+                    <td>
+                      <a href="#/finance/{{transaction._id}}">
+                        {{transaction.seller_name}}
+                      </a>
+                    </td>
+                    <td>{{transaction.seller_email}}</td>
+
+                    <td>{{transaction.order_count}}</td>
+                    <td>{{transaction.price}}</td>
+                    <td>{{transaction.commission_amount| number}}</td>
+                    <td>{{transaction.paid_out_amount}}</td>
+                    <td>
+                      <a href="#/finance/{{transaction._id}}">
+                      {{transaction.refund_amount}}&nbsp;/&nbsp;
+                      Edit
+                    </a>
+                    </td>
+                    <td>{{transaction.payable_amount| number}}</td>
+
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Seller Name</td>
+                    <td>Seller Email</td>
+
+                    <td>Total Orders</td>
+                    <td>Price</td>
+                    <td>Commission</td>
+                    <td>Paid Out</td>
+                    <td>Refund Amount</td>
+                    <td>Payable</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+
+        <!-- /.content -->
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+  </div>
+</div>
+<!-- ./wrapper -->

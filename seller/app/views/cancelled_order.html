@@ -1,0 +1,172 @@
+
+
+  <style>
+body{
+overflow-x:hidden;
+}
+.outer{
+  margin:10px;
+  background-color:#fff;
+}
+.nav>li>a{
+  padding: 10px 35.2px;
+}
+.nav{
+    border: 1px solid #f5f5f5;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  max-width: 625;
+}
+pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color: #fff;
+  background-color: #337ab7;
+  border-radius: 1px;
+}
+.nav-pills>li>a{
+border-radius:1px;
+}
+a{
+color:#000;
+}
+a:hover{
+color:#000;
+}
+.inner-container{
+max-width: 1556px;
+margin:0px auto;
+}
+.tab-content{
+border: 1px solid #f1f1f1;
+border-top-color: #fff;
+padding:20px 40px;
+}
+.primary-button{
+  border-radius:2px;
+}
+.active-inner{
+  padding-top:30px;
+}
+.active-inner{
+  margin-top:30px;
+}
+.border-section{
+  margin-top:20px;
+  border:1px solid #f5f5f5;
+  border-radius:2px;
+  padding:30px;
+}
+@media(max-width: 488px){
+  .border-section{
+    padding:0px;
+    padding-top:10px;
+  }
+}
+.img-col{
+  padding-left:60px;
+}
+@media(max-width: 768px){
+.img-col
+  {
+    padding-left:15px;
+  }
+}
+.nxt-btn{
+  margin-top:15px;
+}
+</style>
+<div class="wrapper">
+
+  <w3-test-directive></w3-test-directive>
+  <sidebar></sidebar>
+  <!-- Left side column. contains the logo and sidebar -->
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" ng-controller="CancelledOrderCtrl">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+      Order
+      </h1>
+      <div class="outer">
+        <div class="container-fluid clearfix" style="padding:0px;">
+           <div class="inner-container">
+          <ul class="nav nav-pills">
+            <li ><a data-toggle="pill" href="#/cancelled_order" data-target="#product">Cancelled Order</a></li>
+
+          </ul>
+
+          <div class="tab-content">
+            <div id="home" class="tab-pane fade in active clearfix">
+
+                <div class="active-inner clearfix" >
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-2 col-sm-2 img-col" style="">
+                        <b>Order Id</b>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                        <b>Quantity</b>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <b>Price</b>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <b>Shipping Address</b>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                        <b>Action</b>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border-section" ng-repeat ="o in orders">
+                    <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-2">
+                      {{o._id}}
+                      </div>
+                      <div class="col-md-3">
+                      {{o.quantity}}
+                      </div>
+                      <div class="col-md-2">
+                        {{o.price}}
+                      </div>
+                      <div class="col-md-1">
+                          {{o.shipping.customer}}
+                          {{o.shipping.address}}
+                          {{o.shipping.city}}
+                          {{o.shipping.state}}
+                          {{o.shipping.country}}
+                          {{o.shipping.pincode}}
+                      </div>
+                      <div class="col-md-4">
+                        <input type="button" class="btn btn-primary" data="{{o._id}}"  ng-click="edit_single_product(o._id)" value="Details"/>
+                        <input type="button" class="btn btn-primary" data="{{o._id}}"  ng-click="edit_single_product(o._id)" value="Shipment"/>
+                        <!-- <button class="btn btn-warning"  data="{{a._id}}" ng-click="delete_product(a._id)">Delete</button> -->
+
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <button type="button" class="btn btn-primary disabled pull-right nxt-btn">Next</button>
+                </div>
+            </div>
+
+          </div>
+          </div>
+        </div><!--container-->
+      </div><!--outer-->
+
+    </section>
+
+    <!-- Main content -->
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+</div>

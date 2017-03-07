@@ -1,0 +1,56 @@
+<header-bar></header-bar>
+<title>Login</title>
+<div class=heading-banner style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important" >
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class=" k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>login</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li><i class="fa fa-angle-right"></i><a href="#">login</a></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding login-area">
+    <div class=container>
+        <div class=row>
+            <div class=col-md-6>
+                <div class=create-ac>
+                    <h2>Create an account</h2>
+                    <p>The-Symbol is the place to discover and buy amazing things curated by our global community</p><a href=#/register class=kp-button>create an account</a></div>
+            </div>
+            <div class=col-md-6>
+                <div class=login>
+                    <form name=form ng-submit=LC.loginAsUser() role=form>
+                        <div ng-if=LC.dataLoading style="width:100%;position:absolute;height:100%;background-color:rgba(0,0,0,.39);box-shadow:0 0 36px #000;z-index:80"><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" style=margin-left:50%;margin-top:25%;z-index:80;position:absolute></div>
+                        <div class=form-fields>
+                            <h2>Login</h2>
+                            <p>
+                                <label ng-class="{'has-error': form.email.$dirty && form.email.$error.required}">Email address <span class=required>*</span></label>
+                                <input name=email type="email" ng-model=LC.login.email ng-required=true placeholder=" Email Address">
+                                <p>
+                                    <label ng-class="{'has-error': form.password.$dirty && form.password.$error.required}">Password <span class=required>*</span></label>
+                                    <input name=password ng-model=LC.login.password ng-required=true placeholder=Password type=password>
+                                    <p class="alert alert-danger" ng-show=LC.error>
+                                        <button class=close type=button data-ng-click=LC.close(this)>x</button><strong>Sorry!</strong>{{LC.error.statusMessage}}
+                                        <p class="alert alert-success" ng-show=LC.success>
+                                            <button class=close type=button data-ng-click=LC.close(this)>x</button><strong>WELCOME!</strong>{{LC.success.statusMessage}}</div>
+                        <div class=form-action>
+                            <p class=lost_password><a href=#/forgotpassword>Lost your password?</a></p>
+                            <button class=kp-button type=submit ng-disabled="form.$invalid || LC.dataLoading">Login</button>
+                            <label>
+                                <input type=checkbox id="remember" value="yes"> Remember me</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

@@ -1,0 +1,29 @@
+.nivo-directionNav > a {
+  background: #f1f1f1 none repeat scroll 0 0;
+  color: #333;
+  font-size: 18px;
+  height: 90px;
+  line-height: 100px;
+  width: 90px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.nivo-directionNav > a:hover{
+  background: #ef6644;
+  color: #fff;
+}
+.nivo-prevNav {
+  text-align: right;
+  padding-right: 20px;
+}
+.nivo-nextNav {
+  padding-left: 20px;
+}
+.slides:hover .nivo-prevNav{
+  left: 0;
+  opacity: 1;
+}
+.slides:hover .nivo-nextNav{
+  right: 0;
+  opacity: 1;
+}

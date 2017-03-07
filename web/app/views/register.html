@@ -1,0 +1,118 @@
+<header-bar></header-bar>
+<title>Register</title>
+<style>
+    .input_format {
+        background: #f1f1f1 none repeat scroll 0 0;
+        border: 1px solid #ddd;
+        border-radius: 32px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        width: 100%;
+    }
+    .red{
+      color:red !important;
+    }
+</style>
+<div class=heading-banner style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important" >
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class=" k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>Registration</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li><i class="fa fa-angle-right"></i>Registration</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding contact-us-area registration-area" ng-controller=RegisterCtrl>
+    <div class=container>
+        <div class=row>
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                <div class=registration-info>
+                    <div class=section-heading>
+                        <h2><span>Personal Information</span></h2></div>
+                    <div class=form-inner>
+                        <form name=form ng-submit=RC.registerAsUser() role=form>
+                            <div style="width:100%;position:absolute;height:100%;background-color:rgba(0,0,0,.39);box-shadow:0 0 36px #000;z-index:80" ng-if=RC.dataLoading><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                                    style=margin-left:50%;margin-top:25%;z-index:80;position:absolute></div>
+                            <div class="one-half single-input">
+                                <label> Name <span>*</span></label>
+                                <input name=name ng-model=RC.register.name ng-minlength="3" ng-required=true placeholder=" Name" class="input_format">
+                               
+                            </div>
+
+                            <div class="one-half single-input">
+                                <label>Email Address <span>*</span></label>
+                                <input name=email type="email" ng-model=RC.register.email ng-required=true placeholder="Email Address" class="input_format">
+                               
+                            </div>
+                            <div class="one-half single-input">
+                                <label>Password <span>*</span></label>
+                                <input name=password ng-model=RC.register.password ng-required=true placeholder=Password id=password type=password>
+                               
+                            </div>
+                            <div class="one-half single-input">
+                                <label>Phone Number <span>*</span></label>
+                                <input type="text" name=phone ng-model=RC.register.phone ng-required=true placeholder="Phone Number"   pattern="[0-9]{10,10}"    class="input_format" title="Please enter valid phone number">
+                               
+                            </div>
+                            <div class="one-half single-input">
+                                <label>Address <span>*</span></label>
+                                <input name=address ng-model=RC.register.address ng-required=true placeholder=Address class="input_format">
+                                <p ng-show="form.address.$invalid && !form.address.$pristine" class="help-block red">Address is required.</p>
+                            </div>
+                            <div class="one-half single-input custom-select">
+                                <label>Gender<span>*</span></label>
+                                <select class=form-control name=gender ng-model=RC.register.gender ng-required=true class="input_format">
+                                    <option value="">--select--
+                                        <option value=male>Male
+                                            <option value=female>Female</select>
+                               
+                            </div>
+                            <div class="one-half single-input">
+                                <label>City <span>*</span></label>
+                                <input name=city ng-model=RC.register.city ng-required=true placeholder=City class="input_format" type="text"   pattern="[a-zA-Z]+" title="Only enter string only">
+                                
+                            </div>
+                            <div class="one-half single-input">
+                                <label>Zip Code <span>*</span></label>
+                                <input name=pincode type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model=RC.register.pincode ng-required=true placeholder="Zip Code" class="input_format">
+
+                              </div>
+                            <div class="one-half single-input">
+                                <label>State <span>*</span></label>
+                                <input name=state ng-model=RC.register.state ng-required=true placeholder=State class="input_format">
+                                
+                            </div>
+                            <div class="one-half single-input custom-select">
+                                <label>Select Country<span>*</span></label>
+                                <select class=form-control name=country ng-model=RC.register.country ng-required=true>
+                                    <!--<option class="hidden-xs hidden-sm">hhhh</option>
+									<option class="hidden-lg hidden-md">ddd</option>-->
+                                    <option value="">--select--</option>
+                                        <option ng-repeat="con in RC.country | orderBy:'countryName'" value={{con.countryName}}>{{con.countryName}}</option></select>
+
+                                         
+                            </div>
+                            <div class="k-padding-top-4 reg-button"><a href=#/ class="kp-button floatleft">Back to Home</a>
+                                <button class="kp-button floatright" type=submit ng-disabled="RC.dataLoading">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="alert alert-danger" ng-show=RC.error style=margin-top:66%>
+                    <button class=close type=button data-ng-click=RC.close(this)>x</button><strong>Sorry!</strong> {{RC.error.statusMessage}}</div>
+                <div class="alert alert-success" ng-show=RC.success style=margin-top:66%>
+                    <button class=close type=button data-ng-click=RC.close(this)>x</button><strong>GREAT GOING! REGISTRATION SUCCESSFUL!</strong>{{RC.success.statusMessage}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

@@ -1,0 +1,25 @@
+SELLERS
+-----------------------------
+login
+registration
+  - photoproof
+  - addressproof
+manage product
+deactive product
+
+Admin Panel
+------------------------------
+approval system
+editing sellers
+unit system configurable
+shipping configuration
+tax percentage configuration
+
+Email System
+------------------------------
+- registraion email
+- approval mail
+
+
+Twilio System
+------------------------------

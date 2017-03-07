@@ -1,0 +1,258 @@
+
+
+  <style>
+body{
+overflow-x:hidden;
+}
+.outer{
+  margin:10px;
+  background-color:#fff;
+}
+.nav>li>a{
+  padding: 10px 35.2px;
+}
+.nav{
+    border: 1px solid #f5f5f5;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  max-width: 625;
+}
+pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color: #fff;
+  background-color: #337ab7;
+  border-radius: 1px;
+}
+.nav-pills>li>a{
+border-radius:1px;
+}
+a{
+color:#000;
+}
+a:hover{
+color:#000;
+}
+.inner-container{
+max-width: 1556px;
+margin:0px auto;
+}
+.tab-content{
+border: 1px solid #f1f1f1;
+border-top-color: #fff;
+padding:20px 40px;
+}
+.primary-button{
+  border-radius:2px;
+}
+.active-inner{
+  padding-top: 29px;
+  margin-top: 20px;
+  border-top: 2px solid #d3d3d3;
+  padding-bottom: 20px;
+}
+
+.border-section{
+  margin-top:20px;
+  border:1px solid #f5f5f5;
+  border-radius:2px;
+  padding:30px;
+}
+@media(max-width: 488px){
+  .border-section{
+    padding:0px;
+    padding-top:10px;
+  }
+}
+.img-col{
+  padding-left:60px;
+}
+@media(max-width: 768px){
+.img-col
+  {
+    padding-left:15px;
+  }
+}
+.nxt-btn{
+  margin-top:15px;
+}
+.lead
+{
+  text-align: center;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;
+}
+.u_price
+{
+  margin-bottom:10px;
+}
+.shippment_image
+{
+  display: block;
+max-width: 100%;
+height: auto;
+}
+.footer_li
+{
+  display:inline-block;
+  padding: 0px 2px;
+  color:#3c94d3;
+}
+.footer_li:after
+{
+  content:"|";
+  padding-left: 4px;
+}
+.fa_icon
+{
+  margin:0px 3px;
+}
+</style>
+<div class="wrapper">
+
+  <w3-test-directive></w3-test-directive>
+  <sidebar></sidebar>
+  <!-- Left side column. contains the logo and sidebar -->
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" >
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+
+      </h1>
+      <div class="outer">
+        <div class="container-fluid clearfix" style="padding:0px;">
+           <div class="inner-container">
+
+
+          <div class="tab-content">
+            <div id="home clearfix" class="tab-pane fade in active clearfix">
+                <p class="pull-left"><a href="#/order_yet_to_shipped"> <i class="fa fa-arrow-left" style="font-size: 21px;line-height: 27px;"></i> </a></p><p class="lead ">SHIPMENT DETAILS</p>
+                <div class="active-inner clearfix" >
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-2 col-sm-2 img-col" style="">
+                        <b>IMAGE</b>
+                      </div>
+                      <div class="col-md-3 col-sm-3" style="">
+                        <b>DETAILS</b>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <b>BUYER</b>
+                      </div>
+                      <div class="col-md-3 col-sm-3" style="text-align: center;padding-left: 0px;">
+                        <b>CALCULATION</b>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <b>SHIPMENT</b>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <div>
+                  <div class="border-section" id={{o._id}}>
+                    <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-2 col-sm-2" style="padding: 0px;margin-left: -13px;">
+                        <img class="shippment_image"src="  {{order[0].products[0].images[0].url}}" width="114"/>
+                      </div>
+                      <div class="col-md-3 col-sm-3" >
+                        <p>
+                          {{order[0].products[0].description}}<br/>
+
+                          Qty: {{order[0].products[0].bought_quantity}}<br/>
+                          Weight: {{order[0].products[0].shipping_details.weight}} {{order[0].products[0].shipping_details.unit}}
+                        </p>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                      <p>
+                        <b>Name :</b> {{order[0].billing.name}}
+                        <address>
+                        <b>Address :</b><br/>
+                        {{order[0].billing.address}}<br/>
+                        {{order[0].billing.state}}<br/>
+                        {{order[0].billing.city}}<br/>
+                      {{order[0].billing.pincode}} {{order[0].billing.country}}
+                      </p>
+                      </address>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <p class="u_price">Total Price:<b> &#8377;</b> {{order[0].total_price}}</p>
+                        <p class="u_price">Total Tax:<b> &#8377;</b>{{order[0].total_tax}}</p>
+                        <p class="u_price">Shipping: <b> &#8377;</b>{{order[0].total_shipping}}</p>
+                      </div>
+                      <div class="col-md-2 col-sm-2" style="text-align:center;">
+                        <p>
+                          <b>Name :</b> {{order[0].shipping.name}}
+                          <address>
+                          <b>Address :</b><br/>
+                          {{order[0].shipping.address}}<br/>
+                          {{order[0].shipping.state}}<br/>
+                          {{order[0].shipping.city}}<br/>
+                        {{order[0].shipping.pincode}} {{order[0].shipping.country}}
+                        </p>
+
+                          Tracking ID: {{order[0].products[0].tracking.tracking_number}}
+                      </div>
+
+
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                </div>
+            </div>
+
+          </div>
+          </div>
+        </div><!--container-->
+      </div><!--outer-->
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content" style="margin-bottom:50px;">
+
+
+    </section>
+    <footer class="main-footer" style="padding-bottom:100px;" ng-controller ="FooterCtrl">
+    <div class="col-lg-4">
+      <strong>Copyright &copy; 2014-2016 .</strong> All rights
+      reserved.
+    </div>
+    <div class="col-lg-8 col-xs-12 ">
+      <ul>
+        <li class="footer_li" ng-repeat ="y in pages">
+            <a target="_blank" href="#/content/{{y._id}}">{{y.name}}</a>
+          </li>
+
+      </ul>
+  </div>
+  <div class="col-md-offset-5 col-md-6 col-xs-12 text-right">
+    <p>
+      <a href="javascript:void(0);">
+          <i class="fa fa-android fa_icon"></i>
+      </a>
+      <a href="javascript:void(0);">
+          <i class="fa fa-apple fa_icon"></i>
+      </a>
+       Download our App Sell on the move, anywhere and anytime via our app
+    </p>
+  </div>
+    <!-- <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.5
+    </div> -->
+
+
+  </footer>
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+</div>

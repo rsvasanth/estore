@@ -1,0 +1,77 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+
+  <!-- Content Wrapper. Contains user content -->
+  <div class="content-wrapper">
+    <!-- Content Header (User header) -->
+    <section class="content-header">
+      <h1>
+        {{Ctrl.title}}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box-header -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{Ctrl.title}}</h3>
+            </div>
+            <notification-bar alert-data="Ctrl.notify"></notification-bar>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" ng-submit="Ctrl.saveUser()" name="myForm">
+              <div class="box-body">
+                <form-input label="User Name" required name="name" model="Ctrl.user.name"></form-input>
+                <form-input label="Email" required name="email" model="Ctrl.user.email"></form-input>
+                <form-input label="Phone" required name="phone" model="Ctrl.user.phone"></form-input>
+                <div class="form-group">
+                  <lable> User Image </lable>
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <div class="button btn btn-primary" ngf-select="Ctrl.imageUpload($file, 'image')">Upload on file select</div>
+                      <p>&nbsp;</p>
+                      <div class="progress progress-sm active">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.imageProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.imageProgressPercentage}}%">
+                          <span class="sr-only"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p>&nbsp;</p>
+                    <div class="col-md-6">
+                      <img src="{{Ctrl.user.image.url}}" height="100" width="100"/>
+                      <input type="hidden" value="{{Ctrl.user.logo._id}}" ng-model="Ctrl.user.upload_image" />
+                    </div>
+                  </div>
+                </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default" ng-click="myForm.reset()">Reset</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box-body -->
+
+
+
+        <!-- /.content -->
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+  </div>
+</div>
+<!-- ./wrapper -->

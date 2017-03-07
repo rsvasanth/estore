@@ -1,0 +1,228 @@
+
+
+<header-bar></header-bar>
+<title>{{acc.ud.name}} - Profile
+</title>
+<style>.input_format{background: #f1f1f1 none repeat scroll 0 0; border: 1px solid #ddd; border-radius: 32px; height: 40px; line-height: 40px; padding: 0 15px; width: 100%;}
+</style>
+
+<div class=heading-banner id=heading-banner style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important" >
+
+<div class=container>
+
+<div class=row>
+
+<div class=col-lg-12>
+
+<div class="k-padding text-center">
+
+<div class=page-banner-title><h2>My Account</h2>
+</div>
+</div>
+
+<div class=breadcam>
+<ul>
+<li><a href=index.html>Home</a>
+<li><i class="fa fa-angle-right"></i>My Account
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="k-padding my-account-area">
+
+<div class=container>
+
+<div class=row>
+
+<div class="col-sm-12 col-xs-12 col-md-3 res-margin">
+
+<div class=author-account>
+
+<div class=author-ac-info>
+
+<div class=author-ac-img ng-if=acc.ud.logo><img id="image_id"style=width:80px;height:80px alt=""class=imgs ng-src={{acc.ud.logo.url}}>
+</div>
+
+<div class=author-ac-img ng-if=!acc.ud.logo><img style=width:80px;height:80px alt=""class=imgs ng-src=styles/img/male.png ng-if="acc.ud.gender=='male'"> <img style=width:80px;height:80px alt=""class=imgs ng-src=styles/img/female.png ng-if="acc.ud.gender=='female'">
+</div>
+
+<div class=author-ac-title><h3>{{acc.ud.name}}</h3>
+
+<span>{{acc.ud.address.address}}
+</span>
+</div>
+</div>
+</div>
+
+<div class=account-menu>
+<ul>
+<li><a href=#/account>edit profile</a>
+<li><a href=#/cart>My cart
+
+<span>({{header.carts.length}})
+</span></a>
+<li><a href=#/order>purchased product
+
+<span>({{acc.orders.length}})
+</span></a>
+<li><a href=#/changepassword>Change Password</a>
+</ul>
+</div>
+
+<div class="k-padding-top-4 account-action"><a class=kp-button ng-href=#/ >Home</a>
+<ulogout></ulogout>
+</div>
+</div>
+
+<div class="col-sm-12 col-xs-12 res-margin col-md-6 contact-us-area registration-area">
+
+<div class="col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
+
+<div class=registration-info>
+
+<div class=section-heading><h2>
+
+<span>Edit Profile
+</span></h2>
+</div>
+
+<div class=form-inner>
+
+<form name=form ng-submit=acc.updateUser() role=form >
+
+<div ng-if=acc.dataLoading style="width:100%;position:absolute;height:100%;background-color:rgba(0,0,0,.39);box-shadow:0 0 36px #000;z-index:80"><img style=margin-left:50%;margin-top:25%;z-index:80;position:absolute src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==">
+</div>
+
+<div class=single-input>
+<label>Name
+</label>
+<input class="input_format" placeholder=""name=name ng-model=acc.ud.name ng-required=true readonly>
+</div>
+
+<div class=single-input>
+<label>Email
+</label>{{acc.ud.email}}
+</div>
+
+<div class=single-input>
+<label>Profile Picture
+
+<span>*
+</span>
+</label>
+<div>Select an image file: <input type="file" id="fileInput" /></div>
+  <div class="cropArea">
+    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+  </div>
+
+<!-- <input  placeholder=Image file-model=myFile id=icon type=file> -->
+</div>
+<style>
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  height:250px;
+  margin:10px 0px;
+}
+</style>
+
+
+<div class=single-input>
+<label>Phone Number
+
+<span>*
+</span>
+</label>
+<input placeholder="Phone Number" name=phone ng-model=acc.ud.phone class="input_format" ng-required=true>
+</div>
+<!--
+<div class=single-input>
+<label>Address
+
+<span>*
+</span>
+</label>
+<input placeholder=Address name=address class="input_format" ng-model=acc.ud.address.address ng-required=true>
+</div>
+
+<div class=single-input>
+<label>City
+
+<span>*
+</span>
+</label>
+<input class="input_format" placeholder=City name=city ng-model=acc.ud.address.city ng-required=true>
+</div>
+
+<div class=single-input>
+<label>State
+
+<span>*
+</span>
+</label>
+<input class="input_format" placeholder=State name=state  ng-model=acc.ud.address.state ng-required=true>
+</div>
+
+<div class="single-input custom-select">
+<label>Select Country Name
+
+<span>*
+</span>
+</label>
+<select class=form-control name=country ng-model=acc.ud.address.country ng-required=true>
+<option value="">--select--
+<option ng-repeat="con in acc.country" value={{con.countryName}}>{{con.countryName}}
+</select>
+</div>-->
+
+<div class="alert alert-danger"ng-show=acc.error><button class=close type=button data-ng-click=acc.close(this)>x</button><strong>Sorry!</strong> {{acc.error.statusMessage}}
+</div>
+
+<div class="alert alert-success"ng-show=acc.success><button class=close type=button data-ng-click=acc.close(this)>x</button><strong>GREAT GOING! SUCCESSFUL!</strong> {{acc.success.statusMessage}}
+</div>
+
+<div class="k-padding-top-4 reg-button"><button class="kp-button floatright"type=submit ng-disabled="form.$invalid || acc.dataLoading">Save</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-12 col-xs-12 col-md-3">
+
+<div class=order-details>
+
+<div class=order-bolling-d><h2>Billing Address</h2>
+
+<div class=order-d>
+<ul>
+<li>Address: {{acc.billing.address}}
+<li>Location: {{acc.billing.city}}
+<li>Town: {{acc.billing.state}}
+<li>Country: {{acc.billing.country}}
+</ul>
+</div>
+</div>
+
+<div class=order-bolling-d><h2>Shipping Address</h2>
+
+<div class=order-d>
+<ul>
+<li>Address: {{acc.shipping.address}}
+<li>Location: {{acc.shipping.city}}
+<li>Town: {{acc.shipping.state}}
+<li>Country: {{acc.shipping.country}}
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><footer-bar></footer-bar>
+<script>function readURL(e){if(e.files&&e.files[0]){var a=new FileReader;a.onload=function(e){$(".imgs").attr("src",e.target.result)},a.readAsDataURL(e.files[0])}}function readURL1(e){if(e.files&&e.files[0]){var a=new FileReader;a.onload=function(e){$("#heading-banner").css("background","rgba(0, 0, 0, 0) url('"+e.target.result+"') repeat scroll 0 0 !important")},a.readAsDataURL(e.files[0])}}$("#icon").change(function(){readURL(this)}),$("#icon1").change(function(){readURL1(this)})
+</script>

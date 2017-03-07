@@ -1,0 +1,173 @@
+<header-bar></header-bar>
+<title>Products</title>
+<style>
+.loadmore {
+    background: #ef6644 none repeat scroll 0 0;
+    border: 1px solid #ef6644;
+    color: #fff;
+    font-weight: bold;
+    height: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 400ms ease-out 0s;
+    width: 169px;
+}
+.nomore{
+background: gray none repeat scroll 0 0;
+    border: medium none gray;
+    border-radius: 16px;
+    margin-left: 30%;
+    width: 444px;
+}
+</style>
+<div class=heading-banner ng-if="header.cate.image" style="background:rgba(0,0,0,0) url({{header.cate.image.cdn.url}}) repeat scroll 0 0!important">
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class=" k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>{{header.cate.name}}</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li ng-if="header.cate.parent_id"><a href="#/search/category/{{header.cate.parent_id._id}}"><i class="fa fa-angle-right"></i>{{header.cate.parent_id.name}}</a>
+                            <li><i class="fa fa-angle-right"></i>{{header.cate.name}}</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=heading-banner ng-if="!header.cate.image" style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important">
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class=" k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>{{header.cate.name}}</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+                            <li ng-if="header.cate.parent_id"><a href="#/search/category/{{header.cate.parent_id._id}}"><i class="fa fa-angle-right"></i>{{header.cate.parent_id.name}}</a>
+                            <li><i class="fa fa-angle-right"></i>{{header.cate.name}}</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding shop-page-area">
+    <div class=container>
+        <div class=row>
+            <div class="col-sm-12 col-xs-12 col-md-3">
+                <div class=sidebar>
+                    <div class="widget widget-categories">
+                        <h3 class=sidebar-title><span>Categories</span></h3>
+                        <ul class=sidebar-menu>
+                            <li data-ng-repeat="cate in header.category | orderBy:'name'" on-finish-render=ngRepeatFinisheds><a ng-href=#/search/category/{{cate._id}} target=_self>{{cate.name}}</a></ul>
+                    </div>
+                    <div class="widget widget-price">
+                        <h3 class=sidebar-title><span>Price Filter</span></h3>
+                        <div class=price-filter>
+                            <div id=slider-range></div>
+                            <div class=price_slider_amount>
+                                <input type=text id=amount ng-model=header.srch.price name=price placeholder="Add Your Price">
+                                <input id=minp ng-model=header.srch.minp type=hidden>
+                                <input id=maxp ng-model=header.srch.maxp type=hidden>
+                                <input type=submit ng-click=header.priceSearch() value=Filter>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget hidden-sm widget-popular-product">
+                        <h3 class=sidebar-title><span>popular product</span></h3>
+                        <div class="category-product sin-product-top">
+                            <div class=single-product ng-repeat="top in header.popular | limitTo:4">
+                                <div class=product-img>
+                                    <div class=product-img-2>
+                                        <a ng-href=#/product/{{top._id}} target=_self><img alt="" class=primary-img  ng-if=$first ng-src={{img.cdn.url}} ng-repeat-start="img in top.images | limitTo:2"> <img alt=""  class=secondary-img ng-if=!$first ng-src={{img.cdn.url}} ng-repeat-end></a>
+                                    </div>
+                                </div>
+                                <div class=product-info>
+                                    <h2><a href=#/product/{{top._id}} title="{{top.name}}">{{top.name | cut:true:25:' ...'}}</a></h2><span class="badge rating_success" ng-if="top.total_star!=0">{{top.total_star / top.total_ratings | number:1}} ★</span> <span class=user_count ng-if="top.total_star!=0">({{top.total_ratings}})</span>
+                                    <div class=price><span class=new-price><span>${{top.pricing.after_discount}}</span></span> <span class=old-price><span>${{top.pricing.original}}</span></span><span class=offer>{{((top.pricing.original - top.pricing.after_discount)/top.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-9">
+                <div class=shop-content>
+                    <div class=shop-tab-1>
+                        <ul class=shop-tab role=tablist>
+                            <li role=presentation class=active><a aria-controls=home class=tablinks data-toggle=tab onclick='openCity(event,"home")' role=tab><i class="fa fa-th"></i></a>
+                                <li role=presentation><a aria-controls=profile class=tablinks data-toggle=tab onclick='openCity(event,"profile")' role=tab><i class="fa fa-list"></i></a></ul>
+                    </div>
+                    <div class=shorting-form>
+                        <form action=#>
+                            <div class=shorting-select>
+                                <select class=form-control ng-model=sortBy>
+                                    <option value="">--sort--
+                                        <option value=created_at>Sort by newness
+                                            <option value=pricing.after_discount>Sort by price: low to high
+                                                <option value=-pricing.after_discount>Sort by price: high to low</select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="alert alert-success" ng-show=header.success>
+                        <button class=close data-ng-click=header.close(this) type=button>x</button><strong>Success!</strong>{{header.success.statusMessage}}</div>
+                    <div class="alert alert-danger" ng-show=header.error>
+                        <button class=close data-ng-click=header.close(this) type=button>x</button><strong>Oops!</strong>{{header.error.statusMessage}}</div>
+                    <div class=tab-content>
+                        <div class="active tab-pane tab-panes" id=home role=tabpanel>
+                            <div class=row>
+                                <br>
+                                <div class="alert alert-info" ng-if="header.products.length==0"><strong>Oops!</strong>No product found</div>
+                                <div class="col-md-4 col-sm-4 col-xs-12" data-ng-repeat="prod in header.products | orderBy:sortBy | limitTo : header.limit">
+                                    <div class=single-product>
+                                        <div class=product-img>
+                                            <div class=product-img-2>
+                                                <a ng-href=#/product/{{prod._id}} target=_self><img alt="" class=primary-img  ng-if=$first ng-src={{img.cdn.url}} ng-repeat-start="img in prod.images | limitTo:2"> <img  alt="" class=secondary-img ng-if=!$first ng-src={{img.cdn.url}} ng-repeat-end></a>
+                                            </div>
+                                        </div>
+                                        <div class=product-info>
+                                            <h2><a href=#/product/{{prod._id}}>{{prod.name | cut:true:15:' ...'}}</a></h2><span class="badge rating_success" ng-if="prod.total_star!=0">{{prod.total_star / prod.total_ratings | number:1}} ★</span> <span class=user_count ng-if="prod.total_star!=0">({{prod.total_ratings}})</span>
+                                            <div class=price><span class=new-price><span>${{prod.pricing.after_discount}}</span></span> <span class=old-price><span>${{prod.pricing.original}}</span></span><span class=offer>{{((prod.pricing.original - prod.pricing.after_discount)/prod.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane tab-panes" id=profile role=tabpanel>
+                            <div class=row>
+                                <br>
+                                <br>
+                                <div class="alert alert-info" ng-if="header.products.length==0"><strong>Oops!</strong>No product found</div>
+                                <div class=shop-list>
+                                    <div class=col-md-12 data-ng-repeat="prod in header.products | orderBy:sortBy | limitTo : header.limit">
+                                        <div class=single-product>
+                                            <div class=product-img>
+                                                <div class=product-img-2>
+                                                    <a ng-href=#/product/{{prod._id}} target=_self><img alt="" class=primary-img style="height:263px;width:263px;" ng-if=$first ng-src={{img.cdn.url}} ng-repeat-start="img in prod.images | limitTo:2"> <img alt="" class=secondary-img style="height:263px;width:263px;" ng-if=!$first ng-src={{img.cdn.url}} ng-repeat-end></a>
+                                                </div>
+                                            </div>
+                                            <div class=product-info>
+                                                <h2><a href=#/product/{{prod._id}}>{{prod.name | cut:true:15:' ...'}}</a></h2><span class="badge rating_success" ng-if="prod.total_star!=0">{{prod.total_star / prod.total_ratings | number:1}} ★</span> <span class=user_count ng-if="prod.total_star!=0">({{prod.total_ratings}})</span>
+                                                <div class=price><span class=new-price><span>${{prod.pricing.after_discount}}</span></span> <span class=old-price><span>${{prod.pricing.original}}</span></span><span class=offer>{{((prod.pricing.original - prod.pricing.after_discount)/prod.pricing.original) * 100 | number:0}}% OFF</span></div>
+                                            </div>
+                                            <div class="product-desc">{{prod.description}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<button style="margin-left:40%;" ng-if="header.products.length > header.limit" ng-click="header.expand(9)" class="loadmore" type="button">Load More</button>
+  <button  ng-if="header.products.length && header.products.length <= header.limit" class="loadmore nomore" type="button">No more product found</button>
+           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

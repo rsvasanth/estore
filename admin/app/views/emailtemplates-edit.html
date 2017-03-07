@@ -1,0 +1,62 @@
+<div class="wrapper">
+
+  <header-bar></header-bar>
+  <!-- Left side column. contains the logo and sidebar -->
+  <side-bar></side-bar>
+
+  <!-- Content Wrapper. Contains emailtemplate content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Emailtemplate header) -->
+    <section class="content-header">
+      <h1>
+        {{Ctrl.title}}
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box-header -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{Ctrl.title}}</h3>
+            </div>
+            <notification-bar alert-data="Ctrl.notify"></notification-bar>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" ng-submit="Ctrl.saveEmailTemplates()" name="myForm">
+              <div class="box-body">
+                <form-input label="Email Template Name" required name="name" model="Ctrl.emailtemplate.name"></form-input>
+                <form-input label="Subject" required name="name" model="Ctrl.emailtemplate.subject"></form-input>
+                <text-area label="Email Template Description" model="Ctrl.emailtemplate.description"></text-area>
+                <div class="form-group">
+                  <teaxtarea class="form-control"  ck-editor="" ng-model="Ctrl.emailtemplate.content"></textarea>
+                </div>
+
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box-body -->
+
+
+        </div>
+
+        <!-- /.content -->
+      </div>
+    </section>
+    <!-- /.content-wrapper -->
+
+    <footer-bar></footer-bar>
+  </div>
+</div>
+<!-- ./wrapper -->

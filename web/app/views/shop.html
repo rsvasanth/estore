@@ -1,0 +1,46 @@
+<header-bar></header-bar>
+<title>Shops</title>
+<div class=heading-banner style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important">
+    <div class=container>
+        <div class=row>
+            <div class=col-lg-12>
+                <div class="k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>Shop</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href=#/>Home</a>
+                            <li><i class="fa fa-angle-right"></i>Shop</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding shop-page-area">
+    <div class=container>
+        <div class=row>
+            <div class="col-sm-3 col-xs-12 home-list-shop-padding" data-ng-repeat="shop in shopC.shops">
+                <div class="home-kr-shops kr-shops">
+                    <div class=shops-top>
+                        <div class=shops-bottom>
+                            <div class=shop_img>
+                                <a href=#/shop/{{shop._id}}><img alt={{shop.name}} ng-if=shop.banner.url src={{shop.banner.url}} style=width:260px!important;height:145px!important> <img alt={{shop.name}} ng-if=!shop.banner.url src={{header.admin.overall_banner.cdn.url}} style=width:260px!important;height:145px!important></a>
+                            </div>
+                        </div>
+                        <div class=shops-logo>
+                            <a href=#/shop/{{shop._id}}><img alt={{shop.name}} ng-if=shop.logo.url src={{shop.logo.url}} style=width:80px!important;height:80px!important> <img alt={{shop.name}} ng-if=!shop.logo.url ng-src="https://kartrocket-res.cloudinary.com/image/fetch/w_169,h_169,c_fit,g_center,r_3,f_auto/https:/nozzle.s3-ap-southeast-1.amazonaws.com/default-shop-logo/{{shop.name | limitTo:1}}_7.png" style=width:80px!important;height:80px!important></a>
+                        </div>
+                        <div class=shops-desc>
+                            <p>
+                                <a href=#/shop/{{shop._id}}></a>
+                                <h3><a href=#/shop/{{shop._id}}>{{shop.name}}</a></h3><a href=#/shop/{{shop._id}}><span class=product-count>{{shop.total_products}} products</span></a>
+                                <p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer-bar></footer-bar>

@@ -1,0 +1,194 @@
+<style>
+  .se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url("http://elsevier-apps.sciverse.com/CytoscapeWeb/images/loader.gif") center no-repeat rgba(0, 0, 0, 0.5);
+  }
+  
+  .g-div {
+    position: absolute;
+    top: calc(50% - 6px);
+    left: calc(50% - 160px);
+    text-align: center;
+    width: 320px;
+    font-weight: bold;
+  }
+  
+  .loader-gmail {
+    padding: 1px;
+    overflow: hidden;
+    /*border: 1px solid #a4a4a4;*/
+  }
+  
+  .progress {
+    width: 100%;
+    height: 8px;
+    background-image: linear-gradient(135deg, #6187f2 0%, #6187f2 25%, #5679da 25%, #5679da 50%, #6187f2 50%, #6187f2 75%, #5679da 75%, #5679da 100%);
+    background-repeat: repeat;
+    background-position: 0px 0px;
+    background-size: 16px 16px;
+    background-clip: content-box;
+    animation: loading 1s linear infinite;
+    -o-animation: loading 1s linear infinite;
+    -moz-animation: loading 1s linear infinite;
+    -webkit-animation: loading 1s linear infinite;
+  }
+  
+  @keyframes loading {
+    from {
+      background-position: 0px 0px;
+    }
+    to {
+      background-position: -16px 0px;
+    }
+  }
+  
+  @-webkit-keyframes loading {
+    from {
+      background-position: 0px 0px;
+    }
+    to {
+      background-position: -16px 0px;
+    }
+  }
+  
+  @-moz-keyframes loading {
+    from {
+      background-position: 0px 0px;
+    }
+    to {
+      background-position: -16px 0px;
+    }
+  }
+  
+  @-o-keyframes loading {
+    from {
+      background-position: 0px 0px;
+    }
+    to {
+      background-position: -16px 0px;
+    }
+  }
+</style>
+<script>
+  $(".progress").css("max-width", "98%");
+  $(".progress-view").text("98%");
+</script>
+<link rel="shortcut icon" type="image/png" href="{{header.admin.fav_icon.cdn.url}}" />
+<link rel="shortcut icon" type="image/png" href="{{header.admin.fav_icon.cdn.url}}" />
+<div class="home-header-area" ng-init="header.pageLoading=true">
+  <div class="se-pre-con" ng-if=header.pageLoading>
+
+  </div>
+
+  <div class="header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="social-shear">
+            <ul>
+              <li ng-repeat="social in header.admin.social_links"><a href="{{social.url}}"><i class="fa fa-{{social.name}}"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="my-account floatright">
+            <ul>
+              <li ><a href="{{header.sellerurl}}register" target="_blank">Become A Seller</a></li>
+              <li ng-if="header.user"><a href="#/account">My Account</a></li>
+              <li ng-if="header.user"><a href="#/order">My Orders</a></li>
+              <li ng-if="!header.user"><a href="#/register">Create Account</a></li>
+              <li ng-if="!header.user"><a href="#/login">log in</a></li>
+              <li ng-if="header.user">
+                <logout></logout>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-middel-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="logo">
+            <a href="#/"><img width="130px;" src="{{header.admin.site_logo.cdn.url}}" alt=""></a>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="search text-center">
+            <form role="form" name="form" ng-submit="header.searchP()">
+              <input type="text" name="name" ng-model="header.srch.name" value="" placeholder="Search...">
+              <button type="submit" class="my-btn"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="cart floatright">
+            <div class="mincart"><a href="#/cart"><span class="img"><img src="styles/img/icon/4.png" alt="Cart"></span><span class="min-cart-item"><span class="c-title">Shopping Cart</span><span class="count">{{header.carts.length}} Items</span>
+											${{header.totalprice}}
+										</span></a></div>
+            <ul>
+              <li ng-if="header.carts.length!=0" data-ng-repeat="cat in header.carts">
+                <div class="cart-img">
+                  <a href="#/product/{{cat.product_id._id}}"><img ng-repeat="img in cat.product_id.images | limitTo:1" alt="Product" ng-src="{{img.url}}"></a>
+                </div>
+                <div class="cart-info">
+                  <h4><a href="#/product/{{cat.product_id._id}}" title="{{cat.product_id.title}}">{{cat.product_id.title | cut:true:25:' ..'}}</a></h4><span>${{cat.product_id.pricing.after_discount}} <span>x {{cat.product_quantity}}</span></span>
+                </div><a href="" class="del-icon"><i  ng-click="header.removeCart(cat._id)" class="fa fa-times-circle"></i></a></li>
+              <li ng-if="header.carts.length">
+                <div class="subtotal-text">Subtotal : </div>
+                <div class="subtotal-price">${{header.totalprice}}</div>
+              </li>
+              <li ng-if="header.carts.length!=0"><a href="#/cart" class="v-cart o-btn">View Cart </a><a href="#/checkout" class="checkout o-btn">checkout</a></li>
+              <li ng-if="header.carts.length==0"><a class="v-cart o-btn">Cart is empty</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="menu-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 hidden-sm hidden-xs">
+        <div class="main-menu">
+          <nav>
+            <ul>
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a href="#/shop">Shop</a></li>
+              <li><a href="">Category</a>
+                <div class="mega-menu"><span ng-repeat="cate in header.category | orderBy:'name'"><a target="_self" class="mega-title" ng-href="#/search/category/{{cate._id}}">{{cate.name}} </a><a target="_self" ng-href="#/search/category/{{sub._id}}" ng-repeat="sub in cate.children | orderBy:'name'">{{sub.name}}</a></span></div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mobile-menu-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 hidden-lg hidden-md">
+        <div class="mobile-menu">
+          <nav id="nav-mobile">
+            <ul>
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a href="#/shop">Shop</a></li>
+              <li><a href="javascript:void(0);">Category</a>
+                <div class="mega-menu"><span ng-repeat="cate in header.category | orderBy:'name'"><a target="_self" class="mega-title" ng-href="#/search/category/{{cate._id}}">{{cate.name}} </a><a target="_self" ng-href="#/search/category/{{sub._id}}" ng-repeat="sub in cate.children | orderBy:'name'">{{sub.name}}</a></span></div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

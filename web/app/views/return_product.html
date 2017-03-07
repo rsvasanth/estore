@@ -1,0 +1,37 @@
+<header-bar></header-bar>
+<title>Return</title>
+<div class=heading-banner ng-repeat="pro in ReturnC.product" style="background:rgba(0,0,0,0) url({{header.admin.overall_banner.cdn.url}}) repeat scroll 0 0!important;margin-top:0!important" >
+    <div class=container ng-repeat="prd in pro.product">
+        <div class=row>
+            <div class=col-lg-12>
+                <div class="k-padding text-center">
+                    <div class=page-banner-title>
+                        <h2>{{prd.title}}</h2></div>
+                </div>
+                <div class=breadcam>
+                    <ul>
+                        <li><a href="#/">Home</a>
+						 <li><i class="fa fa-angle-right"></i><a href="#/order">Order</a>
+                            <li><i class="fa fa-angle-right"></i>{{prd.title}}</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-padding shop-details-area" ng-repeat="pro in ReturnC.product">
+    <div class=container ng-repeat="prd in pro.product">
+        <div class=row>
+            <div class="col-sm-12 col-xs-12 col-md-4 res-margin">
+                <div class=product-zoom><img alt="" data-ng-repeat="img in prd.images |  limitTo:1" ng-src={{img.url}}></div>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-5">
+                <div class="res-margin single-product-details">
+                    <h2>{{prd.title}}</h2>
+                    <div class=product-inner-info><span>Price of Product:{{pro.products.price}}</span><span>Quantity:{{pro.products.quantity}}</span></div>
+                    <div class=product-c-z-info></div>
+                    <div class=product-c-z-info>
+                        <form name=form ng-submit=ReturnC.addToReturn() role=form>
+                            <div class="a-section a-spacing-mini">
+                                <h3 class=a-spacing-micro>Why are you returning this?</h3>
+                                <input name=quantity ng-init="ReturnC.return.quantity=pro.products.quantity" ng-model=ReturnC.return.quantity type=hidden value={{pro.products.quantity}}>
+                                <input name=price ng-init="ReturnC.return.price=pro.products.price" ng-model=ReturnC.return.price type=hidden value={{pro.products.price}}><span class=a-dropdown-container><select  autocomplete=off class=form-control a-native-dropdown name=reason ng-model=ReturnC.return.reason ng-required=true tabindex=-1><option value=""class=a-prompt>Choose a response.<option value="Performance or quality not adequate">Performance or quality not adequate<option value="Product damaged, but shipping box OK">Product damaged, but shipping box OK<option value="Missing parts or accessories">Missing parts or accessories<option value="Both product and shipping box damaged">Both product and shipping box damaged<option value="Wrong item was sent">Wrong item was sent<option value="Item defective or doesn’t work">Item defective or doesn’t work</select></div><div class=cart-action><button class=kp-button type=submit>Continue</button></div></form></div></div><div class="alert alert-success"ng-show=ReturnC.success><button class=close type=button data-ng-click=ReturnC.close(this)>x</button><strong>Success!</strong>{{ReturnC.success.statusMessage}}</div><div class="alert alert-danger"ng-show=ReturnC.error><button class=close type=button data-ng-click=ReturnC.close(this)>x</button><strong>Oops!</strong>{{ReturnC.error.statusMessage}}</div></div></div></div></div><footer-bar></footer-bar>

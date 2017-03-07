@@ -1,0 +1,746 @@
+
+  <style>
+
+  .outer .panel-heading a{
+    text-decoration:none;
+  }
+	.required:after{
+    content:" * ";
+    color:#ff0000;
+  }
+  #id{
+    padding:10px;
+  }
+
+  .form-cont{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  }
+  .in-inner{
+  padding:5px;
+  }
+  .panel-body ul>li{
+    list-style-type:none;
+    margin-top:10px;
+  }
+  .anyName{
+    border-radius: 2px;
+  }
+
+  .add_image
+  {
+  color:#ff0000;
+  display:inline-block;
+  margin:10px 20px;
+  margin-top:17px;
+  }
+  .image_main
+  {
+    padding:0px !important;
+    margin-left:20px !important;
+  }
+  .image_part_one
+  {
+    margin-bottom:20px !important;
+    width:47% !important;
+    margin-right:9px !important;
+    margin-top:30px !important;
+    padding:0px !important;
+    border:2px solid #000 !important;
+  }
+  .sample_product
+  {
+    margin-left: 15px;
+    margin-top: 6px;
+    color:#72afd2 !important;
+  }
+  .long_description
+  {
+    margin-bottom:0px !important;
+  }
+  #id
+  {
+    padding-bottom: 0px;
+  }
+  .q_description
+  {
+    margin-top:10px;
+    font-weight:500;
+    color: #72afd2;
+    margin-bottom: 0px;
+  }
+  .vq_description
+  {
+    margin: 10px 20px;
+    color: #72afd2;
+  }
+  .text_box
+  {
+    min-height: 50px !important;
+    margin-left: 30px;
+
+  }
+  @media(max-width:991px)
+  {
+    .text_box
+    {
+      width:80% !important;
+    }
+  }
+  .meta_des
+  {
+    margin-left: 30px;
+    margin-top: 7px;
+  }
+  .i_description
+  {
+    margin: 10px 4px;
+    color: #72afd2;
+  }
+  .red_clr
+  {
+    color:#d73925;
+  }
+
+</style>
+<style>
+  .footer_li
+  {
+    display:inline-block;
+    padding: 0px 2px;
+    color:#3c94d3;
+  }
+  .footer_li:after
+  {
+    content:"|";
+    padding-left: 4px;
+  }
+  .fa_icon
+  {
+    margin:0px 3px;
+  }
+  @media(max-width:800px)
+  {
+    .grid_left
+    {
+      padding-left: 15px;
+    }
+  }
+  .submit_btn_last
+{
+position: absolute;
+   left: 42% !important;
+   bottom: 40px !important;
+   border: 2px solid #000 !important;
+   padding: 10px 30px !important;
+   font-weight: 600 !important;
+   font-size: 18px !important;
+}
+@media only screen and (min-width:500px) and (max-width:991px)
+{
+.submit_btn_last
+  {
+     bottom: 98px !important;
+   }
+}
+@media only screen and (min-width:320px) and (max-width:500px)
+{
+   .submit_btn_last
+  {
+  left:17px !important;
+  bottom:73px !important;
+  }
+}
+.image_panel
+{
+ padding-bottom: 72px;
+   padding-top: 0px;
+}
+@media(max-width:991px)
+{
+  {
+    padding-bottom:100px;
+  }
+}
+
+.input_space
+{
+ margin-left:20px;
+}
+@media(max-width:991px)
+{
+  .outer_group
+  {
+    margin-left: 20px;
+  }
+}
+@media(max-width:991px)
+{
+  .calculation_grid
+  {
+    padding:0px !important;
+  }
+}
+@media(max-width:991px)
+{
+  .pricing_grid
+  {
+    padding-right:0px !important;
+  }
+}
+@media(max-width:991px)
+{
+  .product_info_input
+  {
+    width:90% !important;
+    margin-left:11px !important;
+  }
+}
+.remaining
+{
+  margin: 5px 17%;
+  margin-bottom: 0px;
+}
+@media(max-width:991px)
+{
+  .remaining
+  {
+    margin-left: 12px !important;
+    margin-top: -40px !important;
+  }
+}
+.meta_para
+{
+	margin: 5px 13%;
+    margin-left: 29px;
+    padding-top: 55px !important;
+    margin-bottom: 0px;
+}
+@media(max-width:479px)
+{
+	.meta_para
+	{
+		margin: 5px 11%;
+		padding-top:0px !important;
+	}
+}
+@media only screen and (min-width:480px) and (max-width:991px)
+{
+	.meta_para
+	{
+		padding-top:0px !important;
+	}
+}
+</style>
+<div class="wrapper">
+
+  <w3-test-directive></w3-test-directive>
+  <sidebar></sidebar>
+  <!-- Left side column. contains the logo and sidebar -->
+
+  <!-- <script src="ckeditor.js"></script> -->
+
+  <script src="bower_components/angular-ckeditor/angular-ckeditor.js"></script>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="alert alert-error" ng-show="product_error">
+      <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error!</strong> {{error_message}}
+    </div>
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header"  >
+
+
+
+      <div class="outer">
+  			<div class="container-fluid">
+          <form   ng-submit="submiting()">
+
+  				<!--product-info-->
+  				<div class="panel panel-default">
+  					<div class="panel-heading head clearfix">
+  						<div class="panel-title">
+  							<a href="#id" data-toggle="collapse">
+  								<b>Product Info</b>
+  							</a>
+  						</div>
+  					</div>
+  					<div id="id" class="collapse in">
+  						<div class="row in-inner">
+  							<label class="col-md-2 form-group required">Name</label>
+  							<input type="text" minlength="3" required ng-model ="name" class="col-md-8 form-cont product_info_input" placeholder="Enter Product Name"/>
+
+              </div>
+  						<div class="row in-inner">
+  							<label class="col-md-2 form-group required">Category</label>
+  							<select  required class="col-md-3 form-cont product_info_input" ng-model="cat" ng-change ="sub_category()">
+  							<option value="">Select</option>
+  								<option ng-repeat ="cat in category track by $index"  value="{{cat._id}}">{{cat.name}}</option>
+  							</select>
+  						</div>
+               <div class="row in-inner" ng-show="subcategory_visible">
+  							<label class="col-md-2 form-group required">Sub Category</label>
+  							<select ng-model="sub_cat" class="col-md-3 form-cont product_info_input" >
+  									<option value="">Select</option>
+  								<option ng-repeat ="sub in subcategory[0].children"  value="{{sub._id}}">{{sub.name}}</option>
+  							</select>
+  						</div>
+
+
+  						<div class="row in-inner">
+
+
+  							<label class="col-md-2 form-group required">Short Description</label>
+  							<textarea required maxlength="200" ng-trim="false" ng-model ="description" class="col-md-8 form-cont product_info_input" rows="5" style="min-height:60px;" placeholder="Enter Product Description"></textarea><br/><br/><br/>
+                <p class="remaining" style="margin: 5px 17%;margin-bottom: 0px;">{{200 - description.length}} characters remaining</p>
+                <!-- <div class="col-md-6">
+  								<div class="row in-inner" style="padding-bottom:0px;">
+  									<label class="col-md-4 form-group" style="margin-top:8px;" >Merchant SKU
+                  </label>
+
+  									<input ng-model ="sku"  ng-change="sku_check()"  minlength="4" maxlength="10"  type="text" class="col-md-7 form-cont" placeholder="Merchant SKU" style="margin-top:5px;"/>
+                      <label ng-show="sku_msg" style="color:red">Already exist.</label>
+                  </div>
+  							</div> -->
+  							<div class="col-md-12" >
+  								<div class="row in-inner">
+
+  									<label class="col-md-12 form-group"><span class="required">Quantity</span><br/>
+                      <p class="q_description">- The Total number of products you have in stock.<br/>
+                      - The inventory will be auto-updated as sales happens
+                    </p>
+                    </label>
+
+  									<input type="number" min="1" required ng-model ="quantity" class="col-md-4 form-cont product_info_input" placeholder="Quantity" style="margin-left:21px;"/>
+  								</div>
+  							</div>
+  						</div>
+
+              <div class="row in-inner" style="padding-bottom:0px;">
+                <label class="col-md-3 form-group long_description" >Long Description</label></br>
+                <p class="sample_product">( Check a sample Product page HERE )</p>
+
+                  <div ckeditor="options" ng-model="long_description" ready="onReady()"></div>
+
+
+                <!-- <textarea ng-model ="long_description" class="col-md-8 form-cont" rows="5" style="min-height:60px;" placeholder="Enter Product Description"></textarea> -->
+             </div>
+             <div class="row in-inner" style="padding-bottom:10px;margin-left:15px!important">
+               <label class="col-md-3 form-group long_description" >Terms And Conditions</label></br>
+               <textarea ng-model ="terms_and_conditions" class="col-md-8 form-cont" rows="5" style="min-height:60px;" placeholder="Enter Product Description"></textarea>
+               <br/>
+               <br/>
+            </div>
+
+
+
+
+  					</div>
+  				</div>
+  				<!--product-info-->
+
+
+
+
+  				<div class="col-md-12" style="padding:0px;">
+  					<!--Pricing-->
+  					<div class="col-md-9 grid_left pricing_grid" style="padding-left:0px;">
+  						<div class="panel panel-default">
+  							<div class="panel-heading head-new clearfix">
+  								<div class="panel-title">
+  									<a href="#id-price" data-toggle="collapse">
+  										<b>Pricing</b>
+  									</a>
+  								</div>
+  							</div>
+  							<div id="id-price" class="collapse in">
+  								<div class="row in-inner">
+  									<div class="col-md-6">
+  										<div class="row in-inner">
+  											<label class="col-md-4 form-group required ">Item Price</label>
+  											<div class="input-group outer_group">
+  												<div class="input-group-addon">{{price_unit}}</div>
+  												<input type="number" min="1" required ng-change="calculate_price()" ng-model="main_price" class="col-md-7 form-cont" placeholder="Max Retail Price" />
+  											</div>
+  										</div>
+  									</div>
+  									<div class="col-md-6">
+  										<div class="row in-inner">
+  										<label class="col-md-3 form-group">Price After Discount</label>
+  											<div class="input-group outer_group">
+  												<div class="input-group-addon">{{price_unit}}</div>
+  												<input type="number" min="1" ng-change="calculate_price()" ng-model="selling_price" class="col-md-7 form-cont" placeholder="Price After Discount"/>
+
+                        </div>
+                          <span ng-model="error" style="color:#ff0000;margin:4px;">{{error}}</span>
+  										</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+
+  						<!--shipping-->
+  						<div class="panel panel-default">
+  							<div class="panel-heading  clearfix">
+  								<div class="panel-title">
+  									<a href="#id-shipping" data-toggle="collapse">
+  										<b>Shipping</b>
+  									</a>
+  								</div>
+  							</div>
+  							<div id="id-shipping" class="collapse in">
+  								<div class="row in-inner">
+  									<div class="col-md-6">
+  										<div class="row in-inner">
+  											<label class="col-md-4 form-group required ">Weight</label>
+  											<div class="input-group outer_group">
+                        <input  required type="number" min="1" ng-model="weight" class="form-control col-md-2" style="width: 46%;">
+                        <select required  ng-model="unit" class="form-control col-md-2" style="width:41%;">
+          								<option value="">Select</option>
+          								<option ng-repeat ="u in units track by $index"  value="{{u}}">{{u}}</option>
+          							</select>
+  											</div>
+  										</div>
+  									</div>
+  									<div class="col-md-6">
+  										<div class="row in-inner">
+  										<label class="col-md-4 form-group">Shipping Fee</label>
+  											<div class="input-group outer_group">
+  												<div class="input-group-addon">{{price_unit}}</div>
+  												<input type="number" min="1" ng-model="shipping_fee" class="col-md-7 form-cont" placeholder="Shipping"/>
+  											</div>
+  										</div>
+  									</div>
+  								</div>
+  								<div class="row in-inner">
+  									<div class="col-md-6">
+  										<div class="row in-inner">
+  											<label class="col-md-4 form-group required ">Ships in</label>
+
+                          <select required ng-model="ship_duration" class="col-md-7  form-cont">
+                        	<option value="">Select</option>
+                            <option ng-repeat ="s in ships_in track by $index"  value="{{s}}">{{s}}</option>
+                          </select>
+  										</div>
+  									</div>
+  									<div class="col-md-6">
+  										<div class="row in-inner">
+  										<label class="col-md-4 form-group required">Paid by</label>
+  											<form role="form">
+  												<label class="radio-inline">
+  												  <input type="radio" ng-model="paid_by"  name="optradio" value="0">Me
+  												</label>
+  												<label class="radio-inline">
+  												  <input type="radio" name="optradio" ng-model="paid_by" value="1">Buyer
+  												</label>
+  											</form>
+  										</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  						<!--shipping-->
+
+
+  					</div><!--col-md-9-->
+  					<!--pricing-->
+
+  					<!--calculation-->
+  					<div class="col-md-3 calculation_grid" style="padding-right:0px;">
+  						<div class="panel panel-default">
+  							<div class="panel-heading">
+  								<div class="panel-title">
+  									<b>Calculation</b>
+  								</div>
+  							</div>
+  							<div class="panel-body" style="padding:8px 15px">
+  								<ul style="padding-left:0px;">
+  									<li><b>Item Price :</b> <label ng-model="main_price" />{{main_price}}</label></li>
+                    <li><b>Selling Price :</b> <label  ng-model="selling_price"/>{{selling_price}}</label></li>
+
+  									<li><b>{{config_commission}}% Commission :</b><label  ng-model="commision" />{{commision}}</label></li>
+  									<li><b>{{config_service_tax}}% Service Tax :</b><label   ng-model="service_tax" />{{service_tax| number}}</label></li>
+                    <li><hr></li>
+                    <li><b>You Earn :</b> <label ng-model="total_earn" />{{price_unit}} {{total_earn | number}}</label></li>
+  								</ul>
+  							</div>
+  						</div>
+  					</div>
+  					<!--calculation-->
+            <!--Thumbnail-->
+            <!--dynamic input-->
+
+            <div class="col-md-12" style="padding:0px;">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <b>Variant Quantity</b>
+                  </div>
+                </div>
+                  <p class="vq_description">- Enter any number of variants this product has.<br/>
+                    - Accordingly, it will show on the Product page as a drop down.<br/>
+                    - Sum of the quantity of all Variants cannot be grater than the overall Product quanitity.<br/></p>
+
+                  <p class="vq_description" style="margin-bottom:0px;">  Eg: Variant Name: <span class="red_clr">Black</span>  Quantity:<span class="red_clr"> 10</span><br/></p>
+                      <p class="vq_description" style="margin-top: 0px;margin-left: 41px;">  Variant Name: <span class="red_clr">White</span>  Quantity:<span class="red_clr"> 15</span>
+                  </p>
+                <div class="panel-body" style="">
+                  <div  data-ng-repeat="choice in choices" class="col-md-12" style="padding:0px;">
+                    <div class="col-md-5" style="padding:0px;">
+                    <input type="text" ng-model="choice.name"  name="" class="form-control col-md-5" style="margin: 10px 15px;" placeholder="Variant">
+                  </div>
+                  <div class="col-md-5" >
+                    <input type="number" min="1" max="{{quantity}}" ng-model="choice.quantity"  name="" class="form-control col-md-5" style="margin:10px 15px;" placeholder="Quantity">
+                  </div>
+                  <div class="col-md-1">
+                    <input type="button" class="form-control remove btn btn-danger" style="margin:10px 15px;"  ng-click="removeChoice($index)" value="-">
+                  </div>
+                  </div>
+
+              <input  type="button" class="addfields btn btn-success" style="margin:10px 15px;" ng-click="addNewChoice()" value="Add"/>
+
+              <div id="choicesDisplay" ng-model="variant_quant" style="display:none">{{choices}}</div>
+                </div>
+              </div>
+            </div>
+            <!--dynamic input-->
+
+            <!--SEO-->
+            <div class="col-md-12" style="padding:0px;">
+            <div class="panel panel-default" style="padding-bottom:10px;">
+              <div class="panel-heading head clearfix">
+                <div class="panel-title">
+                  <a href="#id" data-toggle="collapse">
+                    <b>To Rank in Search Engines.</b>
+                  </a>
+                </div>
+              </div>
+              <p class="vq_description">
+                The following fields will get your product ranked easily on Top in search engines.
+              </p>
+              <div id="id" class="collapse in">
+                <div class="row in-inner">
+                  <label class="col-md-2 form-group " style="margin-bottom:0px;">Meta title</label><br/>
+                    <p class="meta_des">A Proper Title for your Page. Think how someone will Google your product.
+                  <a href=" http://snip.ly/g67n4" target="_blank"> [?]</a><br/></p>
+
+                  <textarea row="3"  ng-model ="meta.title" class="col-md-10 form-cont text_box"  maxlength="45" placeholder="( This will be only visible for Search Spiders. 40 - 45 Characters long )"></textarea>
+                  <p class="meta_para" style="">{{45 - meta.title.length}} characters remaining</p>
+                </div>
+                <div class="row in-inner">
+                  <label class="col-md-2 form-group" style="margin-bottom:0px;">Meta Description</label><br/>
+                  <p class="meta_des">A Proper description about your product.
+                    <a href="http://snip.ly/hmesn" target="_blank"> [?]</a><br/></p>
+                  <textarea row="3" ng-model ="meta.description" class="col-md-10 form-cont text_box"  maxlength="137" placeholder="( This will be only visible for Search Spiders. 131 to 137 Characters long )"></textarea>
+                  <p class="meta_para" style="">{{137 - meta.description.length}} characters remaining</p>
+                </div>
+                <div class="row in-inner">
+                  <label class="col-md-2 form-group " style="margin-bottom:0px;">Meta Keywords</label><br/>
+                  <p class="meta_des">Keywords related to your product that people may search
+                    <a href="http://snip.ly/j973r" target="_blank"> [?]</a><br/></p>
+                  <textarea row="3" maxlength="100"  ng-model ="meta.keyword" class="col-md-10 form-cont text_box" placeholder="( This will be only visible for Search Spiders. Not more than 5. Comma separate each Keyword )"></textarea>
+                  <p class="meta_para" style="">{{100 - meta.keyword.length}} characters remaining</p>
+                </div>
+
+              </div>
+            </div>
+            <!--SEO-->
+            <!--thumbnail-->
+
+            <div class="col-md-12" style="padding:0px;">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <b class="required">Images</b>
+                  </div>
+                </div>
+
+                <div>
+                  <style>
+                  .cropArea
+                  {
+                    margin:30px auto;
+                    background: #E4E4E4;
+                    overflow: hidden;
+                    width:500px;
+                    height:350px;
+                }
+
+                  </style>
+
+
+                </div>
+                  <span class="add_image" ng-show="image_message">Please Add Images.Image Types Allowed: png, jpeg, jpg, gif</span>
+                <div class="panel-body" style="padding-bottom:70px;padding-top: 0px;">
+                   <p class="i_description">
+                    <b style="font-weight: 600;font-size: 15px;font-style: italic;color: #000;">- Image Types Allowed: png, jpeg, jpg, gif</b><br/>
+                   <span style="display:inline-block;margin-top:10px;">- You can upload upto 4 images</span>
+                </p>
+
+                   <p class="i_description">
+                     Note: If you want a stunning product image, the best Dimension would be 640 * 640.
+                   </p>
+                   <style>
+                    .select_img
+                    {
+                      line-height: 25px;
+                    }
+                    .cropped_title
+                    {
+                      margin:10px 0px;
+                      font-weight:600;
+
+                    }
+                   </style>
+                     <a href="images/640*640.jpg" target="_blank"> Preview of image </a>
+                     <div class="form-group" ng-show="image_icon">
+
+                        <div class="select_img"><b>Select an image file:</b> <input type="file" id="fileInput" /></div>
+                         <spinner name="booksSpinner"  img-src="http://i.stack.imgur.com/MnyxU.gif" style=" margin-left: 44px;margin:4px auto;width: 180px;"></spinner>
+                        <div class="cropArea" ng-show="cropArea">
+                          <img-crop result-image-size="640"
+                            ngf-pattern="'image/*'"
+                            ngf-accept="'image/*'"
+                            image="myImage"
+                            area-type="square"
+                            result-image="myCroppedImage">
+                        </img-crop>
+
+                        </div>
+                        <!-- <div class="cropped_title">Cropped Image:</div>
+                        <div><img ng-src="{{myCroppedImage}}" style="height:640p ;width:640px"/></div> -->
+                        <input type="button" id="cropped" class="btn btn-warning" value="Add Image" ng-click="crop()">
+                      </div>
+                  <div class="form-group">
+
+                    <!-- <img src="{{sellers.logo}}"> -->
+                    <!-- <input type = "file" file-model = "logo" accept="image/*" onchange = "angular.element(this).scope().uploadFiles('logo')"/> -->
+
+                    <!-- <div class="button"
+                        ng-show="image_icon"
+                        ngf-pattern ="'image/*'"
+                        ngf-accept="'image/*'"
+                        ngf-select="uploadFiles($file,'logo')"
+
+                >
+                        <br/>
+                      <div class="border-div">
+
+                      <div class="add-img" style="margin-left: 30px">
+                        <b >Add Image</b><br/>
+                      </div>
+
+                      <span class="image-logo" style="cursor:pointer;padding: 16px 27px;padding-top: 82px;border: 1px solid #ddd;margin-top: 10px;">
+                        <i  class="fa fa-5x fa-image" style="margin-top:7px;cursor:pointer;"></i>
+                      </div>
+
+
+                    </span>
+                    </div> -->
+
+
+                    <!-- <input type="button" style="margin:10px 15px;" class="addfields btn btn-success"  ng-click = "uploadFiles('logo')" value="Save"/> -->
+                    <div class="col-md-12 image_main" id="image_url1">
+                      <div ng-repeat="i in images">
+                        <div class ="col-md-6 image_part_one" id="{{i.id}} image_part" >
+                          <div style="text-align: center;" >
+                            <input type="button" style="margin-top:20% !important;margin:5px;padding:0px 6px;font-weight:900;" class="btn btn-danger" btn-sm value="x" ng-click="remove_image($index)"/>
+                              <img style="width: 415px ;height:250px;padding: 0px;border: 2px  solid #000;" class="img-responsive col-md-10" src ="{{i.url}}"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </br>
+            <!--thumbnail-->
+                <!--Thumbnail-->
+
+
+              </br>
+              <div class="submit-btn" style="text-align:center;">
+                <input type="submit" ng-show="submit" class="btn btn-success submit_btn_last" id="submit" value="Submit" />
+              </div>
+  				</div>
+
+
+
+            </form>
+  			</div>
+
+    </section>
+    <footer class="main-footer" style="padding-bottom:100px;" ng-controller ="FooterCtrl">
+      <div class="col-lg-4">
+        <strong>Copyright &copy; 2014-2016 .</strong> All rights
+        reserved.
+      </div>
+      <div class="col-lg-8 col-xs-12 ">
+        <ul>
+          <li class="footer_li" ng-repeat ="y in pages">
+              <a target="_blank" href="#/content/{{y._id}}">{{y.name}}</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-offset-5 col-md-6 col-xs-12 text-right">
+      <p>
+        <a href="javascript:void(0);">
+            <i class="fa fa-android fa_icon"></i>
+        </a>
+        <a href="javascript:void(0);">
+            <i class="fa fa-apple fa_icon"></i>
+        </a>
+         Download our App Sell on the move, anywhere and anytime via our app
+      </p>
+    </div>
+      <!-- <div class="pull-right hidden-xs">
+        <b>Version</b> 2.3.5
+      </div> -->
+
+
+    </footer>
+
+    <!-- Main content -->
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+</div>
+<script src="scripts/library/jquery.upload_preview.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var text_max = 99;
+  $('#textarea_feedback').html(text_max + ' characters remaining');
+
+  $('#textarea').keyup(function() {
+      var text_length = $('#textarea').val().length;
+      var text_remaining = text_max - text_length;
+
+      $('#textarea_feedback').html(text_remaining + ' characters remaining');
+  });
+});
+</script>
